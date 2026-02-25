@@ -6,8 +6,10 @@
 }
 
 body{    
-  font-family: "Katibeh", serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
+  background: #f5f0f0;
+
 }
 
 .container{
@@ -25,4 +27,35 @@ header .top-strip{
 
 .link:hover{
     color: #ddcf88;
+}
+
+.list-navigation{
+    color: #214f37;
+}
+
+nav button {    
+    color: #214f37 !important; 
+    font-weight: 600 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+nav button:hover{
+    color: #ddcf88 !important;
+}
+
+nav button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0%;
+    height: 2px;
+    background-color: #ddcf88;
+    transition: width 0.3s ease;
+}
+
+nav button:hover::after {
+    width: 100%;
 }

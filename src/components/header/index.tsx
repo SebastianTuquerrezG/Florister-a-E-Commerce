@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import { BsBasket2Fill } from "react-icons/bs";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import Tooltip from '@mui/material/Tooltip';
+import Navigation from './navigation';
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -22,8 +23,8 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 const Header = () => {
     return (
         <>
-            <header>
-                <div className='top-strip py-2 border-t border-gray-300 bg-primary border-b'>
+            <header className='bg-white'>
+                <div className='top-strip py-2 border-t border-gray-250 bg-primary border-b'>
                     <div className='container'>
                         <div className='flex items-center justify-between'>
                             <div className='col1 w-[50%]'>
@@ -44,10 +45,10 @@ const Header = () => {
                     </div>
                 </div>
                 
-                <div className='header'>
-                    <div className='container flex items-center justify-between py-4'>
+                <div className='header py-4 border-b border-gray-250' >
+                    <div className='container flex items-center justify-between py-1'>
                         <div className='col1 w-[14%]'>
-                            <Link to='/'><img src={logoVerde} alt="logo verde" /></Link>
+                            <Link to='/'><img className='w-25' src={logoVerde} alt="logo verde" /></Link>
                         </div>
 
                         <div className='col2 w-[40%]'>
@@ -56,10 +57,10 @@ const Header = () => {
 
                         <div className='col3 w-[30%] flex items-center pl-7'>
                             <ul className='flex items-center justify-end gap-3'>
-                                <li className='list-none'>
-                                    <Link to="/login" className='link transition font-medium'>Login</Link> 
+                                <li className='list-none text-2xl'>
+                                    <Link to="/login" className='link transition font-medium'>Login </Link> 
                                     / 
-                                    <Link to="/register" className='link transition font-medium'>Register</Link>
+                                    <Link to="/register" className='link transition font-medium'> Register</Link>
                                 </li>
 
                                 <li className='list-none'>
@@ -85,6 +86,8 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
+
+                <Navigation></Navigation>
             </header>
         </>
     )
