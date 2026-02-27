@@ -1,5 +1,5 @@
 import './styles.css';
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { FaAngleDown } from "react-icons/fa";
@@ -56,7 +56,6 @@ const menuData = {
 };
 
 const dropdownLinks = Object.keys(menuData) as Array<keyof typeof menuData>;
-const simpleLinks = ["Home", "Our Story", "Blog"];
 
 const Navigation = () => {
   const [openMenu, setOpenMenu] = useState<string | null>(null);

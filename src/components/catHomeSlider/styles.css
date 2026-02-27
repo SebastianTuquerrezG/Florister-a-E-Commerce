@@ -1,0 +1,241 @@
+.cat-section {
+    padding: 64px 0;
+    background: #f5f0f0;
+}
+
+/* ── TABS ── */
+.cat-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #e0d8d8;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cat-tab {
+    background: transparent;
+    border: none;
+    padding: 12px 32px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.25s ease;
+    letter-spacing: 0.5px;
+}
+
+.cat-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #ddcf88;
+    transition: width 0.3s ease;
+}
+
+.cat-tab:hover {
+    color: #214f37;
+}
+
+.cat-tab.active {
+    color: #214f37;
+}
+
+.cat-tab.active::after {
+    width: 100%;
+}
+
+/* ── SECTION HEADER ── */
+.cat-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.cat-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cat-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ddcf88;
+}
+
+.cat-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.cat-see-all {
+    background: transparent;
+    border: 1.5px solid #214f37;
+    color: #214f37;
+    padding: 10px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s ease, color 0.2s ease;
+    letter-spacing: 0.5px;
+}
+
+.cat-see-all:hover {
+    background: #214f37;
+    color: #fff;
+}
+
+/* ── SLIDER ── */
+.cat-swiper {
+    position: relative;
+    overflow: hidden;
+}
+
+.cat-swiper .swiper-slide {
+    height: auto;
+}
+
+.swiper-scrollbar {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 8px;
+  height: 6px;
+  background: rgba(0,0,0,0.06);
+  border-radius: 999px;
+  z-index: 30;
+}
+
+.swiper-scrollbar-drag {
+  background: #214f37;
+  border-radius: 999px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.swiper-scrollbar-drag {
+  background: #214f37;
+  border-radius: 999px;
+  height: 100%;
+}
+
+.cat-swiper .swiper-wrapper {
+    align-items: stretch;
+}
+.cat-swiper .swiper-wrapper:active {
+  cursor: grabbing;
+}
+
+/* ── PRODUCT CARD ── */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    cursor: pointer;
+}
+
+.product-card__image-wrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+}
+
+.product-card__image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-card__image-wrapper img {
+    transform: scale(1.08);
+}
+
+.product-card__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #214f37;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+}
+
+.product-card__add {
+    position: absolute;
+    bottom: -48px;
+    left: 0;
+    right: 0;
+    background: rgba(33, 79, 55, 0.92);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: bottom 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.product-card:hover .product-card__add {
+    bottom: 0;
+}
+
+.product-card__info {
+    padding: 14px 4px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.product-card__name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.product-card__price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #214f37;
+}
+
+.product-card__price .original {
+    font-size: 12px;
+    color: #aaa;
+    text-decoration: line-through;
+    font-weight: 400;
+    margin-left: 6px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+    .cat-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+}
