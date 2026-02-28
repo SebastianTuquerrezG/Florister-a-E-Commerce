@@ -6,6 +6,19 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 import './styles.css';
+import floridos1 from '../../assets/floridos1.png';
+import floridos5 from '../../assets/floridos5.png';
+import floridos6 from '../../assets/floridos6.png';
+import floridos7 from '../../assets/floridos7.png';
+import floridos8 from '../../assets/floridos8.png';
+import floridos9 from '../../assets/floridos9.png';
+
+import planta from '../../assets/planta.png';
+import planta2 from '../../assets/planta2.png';
+import planta3 from '../../assets/planta3.png';
+import planta4 from '../../assets/planta4.png';
+import planta5 from '../../assets/planta5.png';
+import planta6 from '../../assets/planta6.png';
 
 interface Product {
   id: number;
@@ -17,21 +30,21 @@ interface Product {
 }
 
 const flores: Product[] = [
-  { id: 1, name: 'Rosas Rojas',       price: 35000, originalPrice: 42000, image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=400&h=500&fit=crop', badge: 'Popular' },
-  { id: 2, name: 'Tulipanes Rosa',    price: 28000,                        image: 'https://images.unsplash.com/photo-1490750967868-88df5691cc11?w=400&h=500&fit=crop' },
-  { id: 3, name: 'Orquídeas Blancas', price: 55000, originalPrice: 65000,  image: 'https://images.unsplash.com/photo-1566907225472-514215c9e6a5?w=400&h=500&fit=crop', badge: 'Nuevo' },
-  { id: 4, name: 'Girasoles',         price: 22000,                        image: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=400&h=500&fit=crop' },
-  { id: 5, name: 'Lirios Morados',    price: 40000,                        image: 'https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=400&h=500&fit=crop' },
-  { id: 6, name: 'Peonías',           price: 48000, originalPrice: 56000,  image: 'https://images.unsplash.com/photo-1444930694458-01babf71870c?w=400&h=500&fit=crop', badge: 'Oferta' },
+  { id: 1, name: 'Duo Floridos',        price: 35000, originalPrice: 42000,  image: floridos1, badge: 'Popular' },
+  { id: 2, name: 'Bouchon Rosa',        price: 28000,                        image: floridos5 },
+  { id: 3, name: 'Cilindro Inspirados', price: 55000, originalPrice: 65000,  image: floridos6, badge: 'Nuevo' },
+  { id: 4, name: 'Bouquet Felicidad',   price: 22000,                        image: floridos7 },
+  { id: 5, name: 'Amatista',            price: 40000,                        image: floridos8 },
+  { id: 6, name: 'Bouquet Floridos1',   price: 48000, originalPrice: 56000,  image: floridos9, badge: 'Oferta' },
 ];
 
 const plantas: Product[] = [
-  { id: 7,  name: 'Pothos',         price: 18000,                        image: 'https://images.unsplash.com/photo-1585351923407-d4b6a252d65c?w=400&h=500&fit=crop' },
-  { id: 8,  name: 'Suculenta Mix',  price: 12000,                        image: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=400&h=500&fit=crop', badge: 'Popular' },
-  { id: 9,  name: 'Helecho Boston', price: 25000, originalPrice: 30000,  image: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=400&h=500&fit=crop' },
-  { id: 10, name: 'Monstera',       price: 65000,                        image: 'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=400&h=500&fit=crop', badge: 'Nuevo' },
-  { id: 11, name: 'Cactus Barrel',  price: 15000,                        image: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=400&h=500&fit=crop' },
-  { id: 12, name: 'Paz Lily',       price: 32000, originalPrice: 38000,  image: 'https://images.unsplash.com/photo-1593482892290-f54927ae2b7a?w=400&h=500&fit=crop', badge: 'Oferta' },
+  { id: 7,  name: 'Pothos',         price: 18000,                        image: planta },
+  { id: 8,  name: 'Suculenta Mix',  price: 12000,                        image: planta2, badge: 'Popular' },
+  { id: 9,  name: 'Helecho Boston', price: 25000, originalPrice: 30000,  image: planta3 },
+  { id: 10, name: 'Monstera',       price: 65000,                        image: planta4, badge: 'Nuevo' },
+  { id: 11, name: 'Cactus Barrel',  price: 15000,                        image: planta5 },
+  { id: 12, name: 'Paz Lily',       price: 32000, originalPrice: 38000,  image: planta6, badge: 'Oferta' },
 ];
 
 const formatPrice = (price: number) =>

@@ -111,11 +111,13 @@
 }
 
 .swiper-scrollbar {
-  position: absolute;
+  margin-top: 40px;
+  position: relative !important; 
+  bottom: auto !important;
   left: 12px;
   right: 12px;
   bottom: 8px;
-  height: 6px;
+  height: 100px;
   background: rgba(0,0,0,0.06);
   border-radius: 999px;
   z-index: 30;
