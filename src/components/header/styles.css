@@ -1,0 +1,20 @@
+.header-welcome {
+    font-size: 14px;
+}
+
+.header-top-links a {
+    font-size: 13px;
+}
+
+/* En móvil ocultamos el welcome y los links del top strip para no saturar */
+@media (max-width: 480px) {
+    .header-welcome {
+        font-size: 12px;
+    }
+    .header-top-links {
+        gap: 12px !important;
+    }
+    .header-top-links a {
+        font-size: 11px;
+    }
+}

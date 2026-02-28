@@ -1,8 +1,9 @@
 import './styles.css';
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { FaAngleDown } from "react-icons/fa";
+import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 
 const menuData = {
   Flowers: {
@@ -59,20 +60,25 @@ const dropdownLinks = Object.keys(menuData) as Array<keyof typeof menuData>;
 
 const Navigation = () => {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-  let closeTimeout: ReturnType<typeof setTimeout>;
+  const [mobileOpen, setMobileOpen]   = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleMouseEnter = (name: string) => {
-    clearTimeout(closeTimeout);
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
     setOpenMenu(name);
   };
 
   const handleMouseLeave = () => {
-    closeTimeout = setTimeout(() => setOpenMenu(null), 150);
+    closeTimeoutRef.current = setTimeout(() => setOpenMenu(null), 150);
   };
 
+  const toggleMobile = (name: string) =>
+    setMobileExpanded(prev => (prev === name ? null : name));
+
   return (
-    <nav className='py-2 relative'>
-      <div className='container flex items-center justify-center'>
+    <nav className='nav-wrapper py-2 relative'>
+      <div className='container nav-desktop flex items-center justify-center'>
         <ul className='flex items-center gap-1 list-none m-0 p-0'>
 
           {/* Home simple link */}
@@ -130,6 +136,68 @@ const Navigation = () => {
             </Link>
           </li>
 
+        </ul>
+      </div>
+
+      <div className='nav-mobile-bar container flex items-center justify-between'>
+        <span className='nav-mobile-label'>Menú</span>
+        <button className='nav-hamburger' onClick={() => setMobileOpen(p => !p)}>
+          {mobileOpen ? <RiCloseLine size={22} /> : <RiMenu3Line size={22} />}
+        </button>
+      </div>
+
+      {/* ── MOBILE DRAWER ── */}
+      <div className={`nav-mobile-drawer ${mobileOpen ? 'open' : ''}`}>
+        <ul className='nav-mobile-list'>
+
+          <li className='nav-mobile-item'>
+            <Link to="/" onClick={() => setMobileOpen(false)} className='nav-mobile-link'>Home</Link>
+          </li>
+
+          {dropdownLinks.map((name) => (
+            <li key={name} className='nav-mobile-item'>
+              <button
+                className='nav-mobile-link nav-mobile-toggle'
+                onClick={() => toggleMobile(name)}
+              >
+                {name}
+                <FaAngleDown size={11} className={`nav-arrow ${mobileExpanded === name ? 'open' : ''}`} />
+              </button>
+
+              {mobileExpanded === name && (
+                <div className='nav-mobile-submenu'>
+                  {menuData[name].sections.map((section) => (
+                    <div key={section.title} className='nav-mobile-section'>
+                      <p className='nav-mobile-section-title'>{section.title}</p>
+                      {section.items.map((item) => (
+                        <Link
+                          key={item}
+                          to="/"
+                          className='nav-mobile-sublink'
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {item}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </li>
+          ))}
+
+          <li className='nav-mobile-item'>
+            <Link to="/" onClick={() => setMobileOpen(false)} className='nav-mobile-link'>Our Story</Link>
+          </li>
+          <li className='nav-mobile-item'>
+            <Link to="/" onClick={() => setMobileOpen(false)} className='nav-mobile-link'>Blog</Link>
+          </li>
+
+          {/* Login/Register solo en móvil */}
+          <li className='nav-mobile-item nav-mobile-auth'>
+            <Link to="/login"    className='nav-mobile-link'>Login</Link>
+            <Link to="/register" className='nav-mobile-link'>Register</Link>
+          </li>
         </ul>
       </div>
     </nav>
