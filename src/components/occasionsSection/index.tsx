@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { GiPineTree, GiBalloons, GiDiamondRing, GiRose, GiGraduateCap, GiFlowerPot } from 'react-icons/gi';
+import { GiPineTree, GiBalloons, GiDiamondRing, GiRose, GiGraduateCap } from 'react-icons/gi';
 import './styles.css';
 import floridos from '../../assets/floridos.png';
 import floridos2 from '../../assets/floridos2.png';
-import floridos5 from '../../assets/floridos3.png';
 import floridos10 from '../../assets/floridos10.png';
 import floridos11 from '../../assets/floridos11.png';
 import floridos12 from '../../assets/floridos12.png';
