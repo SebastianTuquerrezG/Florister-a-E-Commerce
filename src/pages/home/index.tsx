@@ -3,6 +3,7 @@ import CatHomeSlider from '../../components/catHomeSlider';
 import HomeServices from '../../components/homeServices';
 import OccasionsSection from '../../components/occasionsSection';
 import OurStorySection from '../../components/ourStorySection';
+import BlogSection from '../../components/blogSection';
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <HomeServices></HomeServices>
             <OccasionsSection></OccasionsSection>
             <OurStorySection></OurStorySection>
+            <BlogSection></BlogSection>
         </>
     );
 };
