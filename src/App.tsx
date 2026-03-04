@@ -3,6 +3,7 @@ import './App.css'
 import Header from './components/header'
 import Home from './pages/home'
 import Footer from './components/footer'
+import FloatingButtons from './components/floatingButtons'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           <Route path={"/"} element={<Home/>}/>
         </Routes>
         <Footer/>
+        <FloatingButtons />
       </BrowserRouter>
     </>
   )

@@ -28,8 +28,8 @@ const Footer = () => {
                     <Link to='/account'      className='footer-link'>Mi cuenta</Link>
                     <Link to='/faq'          className='footer-link'>FAQ</Link>
                     <Link to='/order-tracking' className='footer-link'>Rastrear pedido</Link>
-                    <Link to='/stores'       className='footer-link'>Nuestras tiendas</Link>
-                    <Link to='/contact'      className='footer-link'>Contáctanos</Link>
+                    <Link to='/store'       className='footer-link'>Nuestra tienda</Link>
+                    <Link to='https://wa.me/573146890813'      className='footer-link'>Contáctanos</Link>
                 </div>
 
                 {/* ── COL 3: Social ── */}

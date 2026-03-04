@@ -9,7 +9,7 @@ const menuData = {
   Flowers: {
     sections: [
       {
-        title: "By Type",
+        title: "Por Tipo",
         items: ["Roses", "Tulips", "Orchids", "Sunflowers", "Lilies"],
       },
       {

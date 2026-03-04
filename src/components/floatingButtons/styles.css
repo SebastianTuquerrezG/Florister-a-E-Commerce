@@ -1,0 +1,113 @@
+.floating-btns {
+    position: fixed;
+    bottom: 32px;
+    right: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    z-index: 998;
+}
+
+/* ── BASE ── */
+.floating-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.3s ease;
+}
+
+/* ── WHATSAPP ── */
+.floating-btn--wa {
+    gap: 10px;
+    background: #25d366;
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+}
+
+.floating-btn--wa:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.55);
+    color: #fff;
+}
+
+.floating-btn--wa:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Pulso suave continuo para llamar la atención */
+@keyframes waPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45); }
+    50%       { box-shadow: 0 4px 28px rgba(37, 211, 102, 0.7); }
+}
+
+.floating-btn--wa {
+    animation: waPulse 2.5s ease-in-out infinite;
+}
+
+.floating-btn--wa:hover {
+    animation: none;
+}
+
+.floating-btn--wa__label {
+    white-space: nowrap;
+}
+
+/* ── BACK TO TOP ── */
+.floating-btn--top {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #214f37;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(33, 79, 55, 0.35);
+
+    /* Empieza invisible y abajo */
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.25s ease;
+}
+
+.floating-btn--top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.floating-btn--top:hover {
+    background: #ddcf88;
+    box-shadow: 0 6px 20px rgba(221, 207, 136, 0.5);
+    transform: translateY(-3px);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+    .floating-btns {
+        bottom: 20px;
+        right: 16px;
+    }
+
+    .floating-btn--wa {
+        padding: 12px 18px;
+        font-size: 13px;
+    }
+
+    .floating-btn--wa__label {
+        display: none;   /* en móvil muy chico solo el ícono */
+    }
+
+    .floating-btn--wa {
+        border-radius: 50%;
+        padding: 14px;
+    }
+}

@@ -30,21 +30,21 @@ interface Product {
 }
 
 const flores: Product[] = [
-  { id: 1, name: 'Duo Floridos',        price: 35000, originalPrice: 42000,  image: floridos1, badge: 'Popular' },
-  { id: 2, name: 'Bouchon Rosa',        price: 28000,                        image: floridos5 },
-  { id: 3, name: 'Cilindro Inspirados', price: 55000, originalPrice: 65000,  image: floridos6, badge: 'Nuevo' },
-  { id: 4, name: 'Bouquet Felicidad',   price: 22000,                        image: floridos7 },
-  { id: 5, name: 'Amatista',            price: 40000,                        image: floridos8 },
-  { id: 6, name: 'Bouquet Floridos1',   price: 48000, originalPrice: 56000,  image: floridos9, badge: 'Oferta' },
+  { id: 1, name: 'Duo Floridos',        price: 75000,  originalPrice: 80000,  image: floridos1, badge: 'Popular' },
+  { id: 2, name: 'Bouchon Rosa',        price: 114000,                        image: floridos5 },
+  { id: 3, name: 'Cilindro Inspirados', price: 115000, originalPrice: 130000, image: floridos6, badge: 'Nuevo' },
+  { id: 4, name: 'Bouquet Felicidad',   price: 46000,                         image: floridos7 },
+  { id: 5, name: 'Amatista',            price: 60000,                         image: floridos8 },
+  { id: 6, name: 'Bouquet Floridos1',   price: 55000,  originalPrice: 60000,  image: floridos9, badge: 'Oferta' },
 ];
 
 const plantas: Product[] = [
-  { id: 7,  name: 'Pothos',         price: 18000,                        image: planta },
-  { id: 8,  name: 'Suculenta Mix',  price: 12000,                        image: planta2, badge: 'Popular' },
-  { id: 9,  name: 'Helecho Boston', price: 25000, originalPrice: 30000,  image: planta3 },
-  { id: 10, name: 'Monstera',       price: 65000,                        image: planta4, badge: 'Nuevo' },
-  { id: 11, name: 'Cactus Barrel',  price: 15000,                        image: planta5 },
-  { id: 12, name: 'Paz Lily',       price: 32000, originalPrice: 38000,  image: planta6, badge: 'Oferta' },
+  { id: 7,  name: 'Cactus Barril Dorado',      price: 18000,                        image: planta },
+  { id: 8,  name: 'Suculenta Echeveria',       price: 12000,                        image: planta2, badge: 'Popular' },
+  { id: 9,  name: 'Suculenta Haworthia Cebra', price: 25000, originalPrice: 30000,  image: planta3 },
+  { id: 10, name: 'Cactus Euphorbia trigona',  price: 25000,                        image: planta4, badge: 'Nuevo' },
+  { id: 11, name: 'Cactus Echinopsis',         price: 25000,                        image: planta5 },
+  { id: 12, name: 'Planta Zamioculca',         price: 20000, originalPrice: 38000,  image: planta6, badge: 'Oferta' },
 ];
 
 const formatPrice = (price: number) =>
@@ -64,16 +64,14 @@ const CatHomeSlider = () => {
 
         {/* ── TABS ── */}
         <div className='cat-tabs'>
-          <button
-            className={`cat-tab ${activeTab === 'flores' ? 'active' : ''}`}
-            onClick={() => setActiveTab('flores')}
-          >
+          <button 
+            className={`cat-tab ${activeTab === 'flores' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('flores')}>
             Flores
           </button>
           <button
             className={`cat-tab ${activeTab === 'plantas' ? 'active' : ''}`}
-            onClick={() => setActiveTab('plantas')}
-          >
+            onClick={() => setActiveTab('plantas')}>
             Plantas
           </button>
         </div>
@@ -88,7 +86,6 @@ const CatHomeSlider = () => {
         </div>
 
         {/* ── SLIDER ── */}
-
         <Swiper
           key={activeTab}
           modules={[Navigation, A11y, Scrollbar]}
@@ -106,8 +103,7 @@ const CatHomeSlider = () => {
             640: { slidesPerView: 2.2, spaceBetween: 20 },
             1024:{ slidesPerView: 3,   spaceBetween: 24 },
           }}
-          className='cat-swiper'
-        >
+          className='cat-swiper'>
           {products.map((product) => (
             <SwiperSlide key={product.id}>
               <div className='product-card'>

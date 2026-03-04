@@ -1,6 +1,5 @@
 .story-section {
     position: relative;
-    background: #faf7f2;
     padding: 96px 0;
     display: flex;
     align-items: center;
@@ -8,6 +7,10 @@
     width: 90%;
     margin: 0 auto;
     overflow: visible;
+}
+
+.story-wrapper {
+    overflow: hidden;
 }
 
 .story-bg-circle { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }

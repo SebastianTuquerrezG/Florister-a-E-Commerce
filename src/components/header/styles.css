@@ -1,3 +1,25 @@
+.site-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: #fff;
+    transform: translateY(0);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s ease;
+}
+
+/* Oculta hacia arriba cuando scrolleas hacia abajo */
+.site-header--hidden {
+    transform: translateY(-100%);
+}
+
+/* Sombra suave cuando está pegado y visible */
+.site-header--scrolled {
+    box-shadow: 0 2px 20px rgba(33, 79, 55, 0.1);
+}
+
 .header-welcome {
     font-size: 14px;
 }
