@@ -65,9 +65,9 @@ const Header = () => {
                     {/* Acciones */}
                     <div className='header-actions flex items-center gap-2 shrink-0'>
                         <div className='header-auth hidden sm:flex items-center gap-1 text-sm font-medium'>
-                            <Link to="/login" className='link transition'>Login</Link>
+                            <Link to="/login" className='link transition'>Ingresar</Link>
                             <span className='text-gray-400'>/</span>
-                            <Link to="/register" className='link transition'>Register</Link>
+                            <Link to="/register" className='link transition'>Registrarse</Link>
                         </div>
 
                         <Tooltip title="Wishlist">

@@ -6,51 +6,51 @@ import { FaAngleDown } from "react-icons/fa";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 
 const menuData = {
-  Flowers: {
+  Flores: {
     sections: [
       {
         title: "Por Tipo",
-        items: ["Roses", "Tulips", "Orchids", "Sunflowers", "Lilies"],
+        items: ["Rosas", "Tulipanes", "Orquideas", "Girasoles", "Lirios"],
       },
       {
-        title: "By Occasion",
-        items: ["Wedding", "Birthday", "Anniversary", "Sympathy", "Just Because"],
+        title: "Por Ocasión",
+        items: ["Boda", "Cumpleaños", "Aniversario", "Simpatia", "Solo porque si"],
       },
       {
-        title: "By Color",
-        items: ["Red", "White", "Yellow", "Pink", "Purple"],
-      },
-    ],
-  },
-  Plants: {
-    sections: [
-      {
-        title: "Indoor",
-        items: ["Succulents", "Cactus", "Ferns", "Pothos", "Peace Lily"],
-      },
-      {
-        title: "Outdoor",
-        items: ["Trees", "Shrubs", "Climbers", "Hedges", "Seasonal"],
-      },
-      {
-        title: "By Care Level",
-        items: ["Easy", "Moderate", "Expert", "Pet Friendly", "Low Light"],
+        title: "Por Color",
+        items: ["Rojo", "Blanco", "Amarillo", "Rosa", "Morado"],
       },
     ],
   },
-  Services: {
+  Plantas: {
     sections: [
       {
-        title: "Events",
-        items: ["Wedding Planning", "Corporate Events", "Quinceañeras", "Baby Showers"],
+        title: "Interior",
+        items: ["Suculentas", "Cactus", "Helechos", "Potos", "Lirio de la Paz"],
       },
       {
-        title: "Delivery",
-        items: ["Same Day", "Scheduled", "Subscription", "Gift Wrapping"],
+        title: "Exterior",
+        items: ["Arboles", "Arbustos", "Escaladores", "Setos", "Estacional"],
       },
       {
-        title: "Custom",
-        items: ["Custom Arrangements", "Workshop Classes", "Consultations"],
+        title: "Por Nivel de Cuidado",
+        items: ["Fácil", "Moderado", "Experto", "Amigable con Mascotas", "Poca Luz"],
+      },
+    ],
+  },
+  Servicios: {
+    sections: [
+      {
+        title: "Eventos",
+        items: ["Planificación de Bodas", "Eventos Corporativos", "Quinceañeras", "Duchas de Bebé"],
+      },
+      {
+        title: "Entrega",
+        items: ["Mismo Día", "Programado", "Suscripción", "Envoltura de Regalos"],
+      },
+      {
+        title: "Personalizados",
+        items: ["Arreglos Personalizados", "Clases de Taller", "Consultas de Diseño", "Tarjetas Personalizadas"],
       },
     ],
   },
@@ -127,7 +127,7 @@ const Navigation = () => {
           {/* Our Story & Blog simple links */}
           <li>
             <Link to="/">
-              <Button className='link transition'>Our Story</Button>
+              <Button className='link transition'>Nuestra Historia</Button>
             </Link>
           </li>
           <li>
@@ -187,7 +187,7 @@ const Navigation = () => {
           ))}
 
           <li className='nav-mobile-item'>
-            <Link to="/" onClick={() => setMobileOpen(false)} className='nav-mobile-link'>Our Story</Link>
+            <Link to="/" onClick={() => setMobileOpen(false)} className='nav-mobile-link'>Nuestra Historia</Link>
           </li>
           <li className='nav-mobile-item'>
             <Link to="/" onClick={() => setMobileOpen(false)} className='nav-mobile-link'>Blog</Link>
@@ -195,8 +195,8 @@ const Navigation = () => {
 
           {/* Login/Register solo en móvil */}
           <li className='nav-mobile-item nav-mobile-auth'>
-            <Link to="/login"    className='nav-mobile-link'>Login</Link>
-            <Link to="/register" className='nav-mobile-link'>Register</Link>
+            <Link to="/login"    className='nav-mobile-link'>Ingresar</Link>
+            <Link to="/register" className='nav-mobile-link'>Registrarse</Link>
           </li>
         </ul>
       </div>
