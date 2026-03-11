@@ -147,17 +147,17 @@ export const BLOG_POSTS = [
 const SOCIAL_POSTS = [
   {
     id: 'p1',
-    instagramUrl: 'https://www.instagram.com/p/REEMPLAZA_CON_ID_REAL/',
+    instagramUrl: 'https://www.instagram.com/p/DVG5sYQid9S/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
     caption: 'Arreglo especial para San Valentín 🌹',
   },
   {
     id: 'p2',
-    instagramUrl: 'https://www.instagram.com/p/REEMPLAZA_CON_ID_REAL_2/',
+    instagramUrl: 'https://www.instagram.com/p/DVBs-CfDSzf/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
     caption: 'Nuevas plantas de temporada 🌿',
   },
   {
     id: 'p3',
-    instagramUrl: 'https://www.instagram.com/p/REEMPLAZA_CON_ID_REAL_3/',
+    instagramUrl: 'https://www.instagram.com/p/DVBseKRjTS2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
     caption: 'Decoración para bodas en Popayán 💐',
   },
 ];
@@ -380,13 +380,13 @@ const BlogPage = () => {
           </div>
 
           {/* Nota de instrucciones — eliminar en producción si quieres */}
-          <div className="social-instructions">
+          {/* <div className="social-instructions">
             <p>
               <strong>💡 Para agregar publicaciones:</strong> Ve a Instagram → abre la publicación →
               clic en "···" → "Insertar" → copia la URL del <code>data-instgrm-permalink</code> y
               pégala en el array <code>SOCIAL_POSTS</code> dentro de <code>BlogPage.tsx</code>.
             </p>
-          </div>
+          </div> */}
         </section>
 
         {/* ── CTA NEWSLETTER ── */}
