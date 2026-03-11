@@ -39,7 +39,7 @@ const menuData = {
       },
       {
         title: "Por Nivel de Cuidado",
-        items: ["Fácil", "Moderado", "Experto", "Amigable con Mascotas", "Poca Luz"],
+        items: ["Fácil", "Moderado", "Experto"],
         filterKey: "care"
       },
     ],
@@ -47,19 +47,17 @@ const menuData = {
   Servicios: {
     sections: [
       {
-        title: "Eventos",
-        items: ["Planificación de Bodas", "Eventos Corporativos", "Quinceañeras", "Duchas de Bebé"],
-        filterKey: "service"
+        // filterKey debe coincidir con lo que lee ServicesPage: "category"
+        // items deben coincidir EXACTAMENTE con los valores de s.category en SERVICES
+        title: "Por Categoría",
+        items: ["Bodas", "Corporativo", "Celebración", "Simpatía", "Suscripción", "Regalo"],
+        filterKey: "category"
       },
       {
-        title: "Entrega",
-        items: ["Mismo Día", "Programado", "Suscripción", "Envoltura de Regalos"],
-        filterKey: "delivery"
-      },
-      {
-        title: "Personalizados",
-        items: ["Arreglos Personalizados", "Clases de Taller", "Consultas de Diseño", "Tarjetas Personalizadas"],
-        filterKey: "custom"
+        // filterKey "scale" → coincide con s.scale en SERVICES
+        title: "Por Escala",
+        items: ["Pequeño", "Mediano", "Grande", "Recurrente"],
+        filterKey: "scale"
       },
     ],
   },
@@ -85,24 +83,14 @@ const Navigation = () => {
   const toggleMobile = (name: string) =>
     setMobileExpanded(prev => (prev === name ? null : name));
 
-  // Función para construir URL del catálogo con filtros
   const getCatalogUrl = (category: string, filterKey: string, value: string) => {
-    // Normalizar el valor para la URL (eliminar espacios, convertir a minúsculas, etc.)
     const normalizedValue = encodeURIComponent(value);
-    
-    // Si es la categoría principal (Flores, Plantas, etc.), ir al catálogo general
-    if (category === 'Flores') {
-      return `/catalogo?${filterKey}=${normalizedValue}`;
-    } else if (category === 'Plantas') {
-      return `/catalogo-plantas?${filterKey}=${normalizedValue}`;
-    } else if (category === 'Servicios') {
-      return `/servicios?${filterKey}=${normalizedValue}`;
-    }
-    
+    if (category === 'Flores')    return `/catalogo?${filterKey}=${normalizedValue}`;
+    if (category === 'Plantas')   return `/catalogo-plantas?${filterKey}=${normalizedValue}`;
+    if (category === 'Servicios') return `/servicios?${filterKey}=${normalizedValue}`;
     return '/catalogo';
   };
 
-  // Cerrar menú móvil al hacer clic en un link
   const handleMobileLinkClick = () => {
     setMobileOpen(false);
     setMobileExpanded(null);
@@ -113,14 +101,12 @@ const Navigation = () => {
       <div className='container nav-desktop flex items-center justify-center'>
         <ul className='flex items-center gap-1 list-none m-0 p-0'>
 
-          {/* Home simple link */}
           <li>
             <Link to="/">
               <Button className='link transition'>Home</Button>
             </Link>
           </li>
 
-          {/* Dropdown links */}
           {dropdownLinks.map((name) => (
             <li
               key={name}
@@ -128,8 +114,11 @@ const Navigation = () => {
               onMouseEnter={() => handleMouseEnter(name)}
               onMouseLeave={handleMouseLeave}
             >
-              {/* Link al catálogo general de la categoría */}
-              <Link to={name === 'Flores' ? '/catalogo' : name === 'Plantas' ? '/catalogo-plantas' : '/servicios'}>
+              <Link to={
+                name === 'Flores'   ? '/catalogo' :
+                name === 'Plantas'  ? '/catalogo-plantas' :
+                '/servicios'
+              }>
                 <Button className='link transition gap-1'>
                   {name}
                   <FaAngleDown
@@ -139,7 +128,6 @@ const Navigation = () => {
                 </Button>
               </Link>
 
-              {/* Mega Dropdown */}
               <div className={`mega-dropdown ${openMenu === name ? 'open' : ''}`}>
                 {menuData[name].sections.map((section) => (
                   <div key={section.title} className='mega-dropdown__section'>
@@ -147,7 +135,7 @@ const Navigation = () => {
                     <ul className='mega-dropdown__list'>
                       {section.items.map((item) => (
                         <li key={item}>
-                          <Link 
+                          <Link
                             to={getCatalogUrl(name, section.filterKey, item)}
                             className='mega-dropdown__item-link'
                             onClick={() => setOpenMenu(null)}
@@ -163,7 +151,6 @@ const Navigation = () => {
             </li>
           ))}
 
-          {/* Our Story & Blog simple links */}
           <li>
             <Link to="/nuestra-historia">
               <Button className='link transition'>Nuestra Historia</Button>
@@ -207,9 +194,12 @@ const Navigation = () => {
 
               {mobileExpanded === name && (
                 <div className='nav-mobile-submenu'>
-                  {/* Link al catálogo general */}
                   <Link
-                    to={name === 'Flores' ? '/catalogo' : name === 'Plantas' ? '/catalogo-plantas' : '/servicios'}
+                    to={
+                      name === 'Flores'   ? '/catalogo' :
+                      name === 'Plantas'  ? '/catalogo-plantas' :
+                      '/servicios'
+                    }
                     className='nav-mobile-sublink nav-mobile-view-all'
                     onClick={handleMobileLinkClick}
                   >
@@ -247,7 +237,6 @@ const Navigation = () => {
             </Link>
           </li>
 
-          {/* Login/Register solo en móvil */}
           <li className='nav-mobile-item nav-mobile-auth'>
             <Link to="/login" onClick={handleMobileLinkClick} className='nav-mobile-link'>
               Ingresar

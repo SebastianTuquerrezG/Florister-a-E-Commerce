@@ -8,6 +8,7 @@ import CatalogPage from './pages/catFlowers/CatalogFlowers'
 import CatalogPlants from './pages/catPlants/CatalogPlants'
 import ServicesPage from './pages/catServices/ServicesPage'
 import OurStoryPage from './pages/ourStory/OurStoryPage'
+import BlogPage from './pages/blog/BlogPage'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/catalogo-plantas" element={<CatalogPlants />} />
           <Route path="/servicios" element={<ServicesPage />} />
           <Route path="/nuestra-historia" element={<OurStoryPage />} />
+          <Route path="/blog" element={<BlogPage />} />
         </Routes>
         <Footer/>
         <FloatingButtons />

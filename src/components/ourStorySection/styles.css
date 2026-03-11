@@ -43,7 +43,7 @@
 .story-stats { display: flex; gap: 0; background: #fff; border: 1px solid #ede8df; border-radius: 3px; overflow: hidden;}
 .story-stat { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 20px 12px; border-right: 1px solid #ede8df; gap: 4px; }
 .story-stat:last-child { border-right: none; }
-.story-stat__value { font-size: 1.6rem; font-weight: 700; color: #214f37; line-height: 1; }
+.story-stat__value { font-size: 1.6rem; font-weight: 700; color: #ddcf88; line-height: 1; }
 .story-stat__label { font-size: 10px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.8px; text-align: center; line-height: 1.3; }
 
 .story-text-side {
