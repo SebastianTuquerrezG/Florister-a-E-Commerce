@@ -7,6 +7,7 @@ import FloatingButtons from './components/floatingButtons'
 import CatalogPage from './pages/catFlowers/CatalogFlowers'
 import CatalogPlants from './pages/catPlants/CatalogPlants'
 import ServicesPage from './pages/catServices/ServicesPage'
+import OurStoryPage from './pages/ourStory/OurStoryPage'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path={"/catalogo"} element={<CatalogPage/>}/>
           <Route path="/catalogo-plantas" element={<CatalogPlants />} />
           <Route path="/servicios" element={<ServicesPage />} />
+          <Route path="/nuestra-historia" element={<OurStoryPage />} />
         </Routes>
         <Footer/>
         <FloatingButtons />
