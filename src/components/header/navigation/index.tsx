@@ -11,14 +11,17 @@ const menuData = {
       {
         title: "Por Tipo",
         items: ["Rosas", "Tulipanes", "Orquideas", "Girasoles", "Lirios"],
+        filterKey: "type"
       },
       {
         title: "Por Ocasión",
         items: ["Boda", "Cumpleaños", "Aniversario", "Simpatia", "Solo porque si"],
+        filterKey: "occasion"
       },
       {
         title: "Por Color",
         items: ["Rojo", "Blanco", "Amarillo", "Rosa", "Morado"],
+        filterKey: "color"
       },
     ],
   },
@@ -27,14 +30,17 @@ const menuData = {
       {
         title: "Interior",
         items: ["Suculentas", "Cactus", "Helechos", "Potos", "Lirio de la Paz"],
+        filterKey: "type"
       },
       {
         title: "Exterior",
         items: ["Arboles", "Arbustos", "Escaladores", "Setos", "Estacional"],
+        filterKey: "type"
       },
       {
         title: "Por Nivel de Cuidado",
         items: ["Fácil", "Moderado", "Experto", "Amigable con Mascotas", "Poca Luz"],
+        filterKey: "care"
       },
     ],
   },
@@ -43,14 +49,17 @@ const menuData = {
       {
         title: "Eventos",
         items: ["Planificación de Bodas", "Eventos Corporativos", "Quinceañeras", "Duchas de Bebé"],
+        filterKey: "service"
       },
       {
         title: "Entrega",
         items: ["Mismo Día", "Programado", "Suscripción", "Envoltura de Regalos"],
+        filterKey: "delivery"
       },
       {
         title: "Personalizados",
         items: ["Arreglos Personalizados", "Clases de Taller", "Consultas de Diseño", "Tarjetas Personalizadas"],
+        filterKey: "custom"
       },
     ],
   },
@@ -60,7 +69,7 @@ const dropdownLinks = Object.keys(menuData) as Array<keyof typeof menuData>;
 
 const Navigation = () => {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-  const [mobileOpen, setMobileOpen]   = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -75,6 +84,29 @@ const Navigation = () => {
 
   const toggleMobile = (name: string) =>
     setMobileExpanded(prev => (prev === name ? null : name));
+
+  // Función para construir URL del catálogo con filtros
+  const getCatalogUrl = (category: string, filterKey: string, value: string) => {
+    // Normalizar el valor para la URL (eliminar espacios, convertir a minúsculas, etc.)
+    const normalizedValue = encodeURIComponent(value);
+    
+    // Si es la categoría principal (Flores, Plantas, etc.), ir al catálogo general
+    if (category === 'Flores') {
+      return `/catalogo?${filterKey}=${normalizedValue}`;
+    } else if (category === 'Plantas') {
+      return `/catalogo-plantas?${filterKey}=${normalizedValue}`;
+    } else if (category === 'Servicios') {
+      return `/servicios?${filterKey}=${normalizedValue}`;
+    }
+    
+    return '/catalogo';
+  };
+
+  // Cerrar menú móvil al hacer clic en un link
+  const handleMobileLinkClick = () => {
+    setMobileOpen(false);
+    setMobileExpanded(null);
+  };
 
   return (
     <nav className='nav-wrapper py-2 relative'>
@@ -96,13 +128,16 @@ const Navigation = () => {
               onMouseEnter={() => handleMouseEnter(name)}
               onMouseLeave={handleMouseLeave}
             >
-              <Button className='link transition gap-1'>
-                {name}
-                <FaAngleDown
-                  size={11}
-                  className={`nav-arrow ${openMenu === name ? 'open' : ''}`}
-                />
-              </Button>
+              {/* Link al catálogo general de la categoría */}
+              <Link to={name === 'Flores' ? '/catalogo' : name === 'Plantas' ? '/catalogo-plantas' : '/servicios'}>
+                <Button className='link transition gap-1'>
+                  {name}
+                  <FaAngleDown
+                    size={11}
+                    className={`nav-arrow ${openMenu === name ? 'open' : ''}`}
+                  />
+                </Button>
+              </Link>
 
               {/* Mega Dropdown */}
               <div className={`mega-dropdown ${openMenu === name ? 'open' : ''}`}>
@@ -112,7 +147,11 @@ const Navigation = () => {
                     <ul className='mega-dropdown__list'>
                       {section.items.map((item) => (
                         <li key={item}>
-                          <Link to="/" className='mega-dropdown__item-link'>
+                          <Link 
+                            to={getCatalogUrl(name, section.filterKey, item)}
+                            className='mega-dropdown__item-link'
+                            onClick={() => setOpenMenu(null)}
+                          >
                             {item}
                           </Link>
                         </li>
@@ -126,12 +165,12 @@ const Navigation = () => {
 
           {/* Our Story & Blog simple links */}
           <li>
-            <Link to="/">
+            <Link to="/nuestra-historia">
               <Button className='link transition'>Nuestra Historia</Button>
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/blog">
               <Button className='link transition'>Blog</Button>
             </Link>
           </li>
@@ -151,7 +190,9 @@ const Navigation = () => {
         <ul className='nav-mobile-list'>
 
           <li className='nav-mobile-item'>
-            <Link to="/" onClick={() => setMobileOpen(false)} className='nav-mobile-link'>Home</Link>
+            <Link to="/" onClick={handleMobileLinkClick} className='nav-mobile-link'>
+              Home
+            </Link>
           </li>
 
           {dropdownLinks.map((name) => (
@@ -166,15 +207,24 @@ const Navigation = () => {
 
               {mobileExpanded === name && (
                 <div className='nav-mobile-submenu'>
+                  {/* Link al catálogo general */}
+                  <Link
+                    to={name === 'Flores' ? '/catalogo' : name === 'Plantas' ? '/catalogo-plantas' : '/servicios'}
+                    className='nav-mobile-sublink nav-mobile-view-all'
+                    onClick={handleMobileLinkClick}
+                  >
+                    Ver Todo {name}
+                  </Link>
+
                   {menuData[name].sections.map((section) => (
                     <div key={section.title} className='nav-mobile-section'>
                       <p className='nav-mobile-section-title'>{section.title}</p>
                       {section.items.map((item) => (
                         <Link
                           key={item}
-                          to="/"
+                          to={getCatalogUrl(name, section.filterKey, item)}
                           className='nav-mobile-sublink'
-                          onClick={() => setMobileOpen(false)}
+                          onClick={handleMobileLinkClick}
                         >
                           {item}
                         </Link>
@@ -187,16 +237,24 @@ const Navigation = () => {
           ))}
 
           <li className='nav-mobile-item'>
-            <Link to="/" onClick={() => setMobileOpen(false)} className='nav-mobile-link'>Nuestra Historia</Link>
+            <Link to="/nuestra-historia" onClick={handleMobileLinkClick} className='nav-mobile-link'>
+              Nuestra Historia
+            </Link>
           </li>
           <li className='nav-mobile-item'>
-            <Link to="/" onClick={() => setMobileOpen(false)} className='nav-mobile-link'>Blog</Link>
+            <Link to="/blog" onClick={handleMobileLinkClick} className='nav-mobile-link'>
+              Blog
+            </Link>
           </li>
 
           {/* Login/Register solo en móvil */}
           <li className='nav-mobile-item nav-mobile-auth'>
-            <Link to="/login"    className='nav-mobile-link'>Ingresar</Link>
-            <Link to="/register" className='nav-mobile-link'>Registrarse</Link>
+            <Link to="/login" onClick={handleMobileLinkClick} className='nav-mobile-link'>
+              Ingresar
+            </Link>
+            <Link to="/register" onClick={handleMobileLinkClick} className='nav-mobile-link'>
+              Registrarse
+            </Link>
           </li>
         </ul>
       </div>

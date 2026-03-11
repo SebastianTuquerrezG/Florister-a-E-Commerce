@@ -4,6 +4,7 @@ import Header from './components/header'
 import Home from './pages/home'
 import Footer from './components/footer'
 import FloatingButtons from './components/floatingButtons'
+import CatalogPage from './pages/catFlowers/CatalogFlowers'
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Header/>
         <Routes>
           <Route path={"/"} element={<Home/>}/>
+          <Route path={"/catalogo"} element={<CatalogPage/>}/>
         </Routes>
         <Footer/>
         <FloatingButtons />
