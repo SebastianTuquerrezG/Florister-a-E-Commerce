@@ -6,6 +6,7 @@ import Footer from './components/footer'
 import FloatingButtons from './components/floatingButtons'
 import CatalogPage from './pages/catFlowers/CatalogFlowers'
 import CatalogPlants from './pages/catPlants/CatalogPlants'
+import ServicesPage from './pages/catServices/ServicesPage'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path={"/"} element={<Home/>}/>
           <Route path={"/catalogo"} element={<CatalogPage/>}/>
           <Route path="/catalogo-plantas" element={<CatalogPlants />} />
+          <Route path="/servicios" element={<ServicesPage />} />
         </Routes>
         <Footer/>
         <FloatingButtons />
