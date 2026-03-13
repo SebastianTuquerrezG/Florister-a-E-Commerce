@@ -1,4 +1,4 @@
-import './WishlistPage.css';
+import './WishListPage.css';
 import { Link } from 'react-router-dom';
 import { useWishlist } from '../../context/WishListContext';
 import { useCart }     from '../../context/CartContext';
