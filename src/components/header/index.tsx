@@ -11,6 +11,8 @@ import Tooltip from '@mui/material/Tooltip';
 import Navigation from './navigation';
 import useScrollDirection from '../../hooks/useScrollDirection';
 import './styles.css';
+import { useCart }     from '../../context/CartContext';
+import { useWishlist } from '../../context/WishListContext';
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -24,6 +26,8 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 const Header = () => {
     const { scrollDir, scrolled } = useScrollDirection(8);
     const hidden = scrollDir === 'down' && scrolled;
+    const { totalItems: cartCount }     = useCart();
+    const { totalItems: wishlistCount } = useWishlist();
 
     return (
         <header className={`site-header ${hidden ? 'site-header--hidden' : ''} ${scrolled ? 'site-header--scrolled' : ''}`}>
@@ -65,25 +69,31 @@ const Header = () => {
                     {/* Acciones */}
                     <div className='header-actions flex items-center gap-2 shrink-0'>
                         <div className='header-auth hidden sm:flex items-center gap-1 text-sm font-medium'>
-                            <Link to="/login" className='link transition'>Ingresar</Link>
+                            <Link to="/login"    className='link transition'>Ingresar</Link>
                             <span className='text-gray-400'>/</span>
                             <Link to="/register" className='link transition'>Registrarse</Link>
                         </div>
 
-                        <Tooltip title="Wishlist">
-                            <IconButton aria-label="wishlist" size="small">
-                                <StyledBadge badgeContent={4} color="secondary">
-                                    <MdOutlineFavoriteBorder />
-                                </StyledBadge>
-                            </IconButton>
+                        {/* ── Wishlist → /favoritos ── */}
+                        <Tooltip title="Favoritos">
+                            <Link to="/favoritos">
+                                <IconButton aria-label="wishlist" size="small">
+                                    <StyledBadge badgeContent={wishlistCount} color="secondary">
+                                        <MdOutlineFavoriteBorder />
+                                    </StyledBadge>
+                                </IconButton>
+                            </Link>
                         </Tooltip>
 
-                        <Tooltip title="Cart">
-                            <IconButton aria-label="cart" size="small">
-                                <StyledBadge badgeContent={4} color="secondary">
-                                    <BsBasket2Fill />
-                                </StyledBadge>
-                            </IconButton>
+                        {/* ── Carrito → /carrito ── */}
+                        <Tooltip title="Carrito">
+                            <Link to="/carrito">
+                                <IconButton aria-label="cart" size="small">
+                                    <StyledBadge badgeContent={cartCount} color="secondary">
+                                        <BsBasket2Fill />
+                                    </StyledBadge>
+                                </IconButton>
+                            </Link>
                         </Tooltip>
                     </div>
                 </div>

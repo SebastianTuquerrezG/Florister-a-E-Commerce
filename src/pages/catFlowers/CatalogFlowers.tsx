@@ -1,18 +1,19 @@
 import './CatalogFlowers.css';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { FaFilter, FaTh, FaList, FaTimes } from 'react-icons/fa';
-import Button from '@mui/material/Button';
+import { FaFilter, FaTh, FaList, FaTimes, FaHeart, FaRegHeart, FaShoppingBasket } from 'react-icons/fa';
+import { useCart }     from '../../context/CartContext';
+import { useWishlist } from '../../context/WishListContext';
 
 const PRODUCTS = [
-  { id: 1, name: "Rosas Rojas Premium",     type: "Rosas",     occasion: "Aniversario",    color: "Rojo",       price: 45000, image: "/images/rosas-rojas.jpg",     description: "Docena de rosas rojas colombianas de alta calidad",        rating: 4.8, inStock: true },
-  { id: 2, name: "Tulipanes Arcoíris",       type: "Tulipanes", occasion: "Cumpleaños",      color: "Multicolor", price: 38000, image: "/images/tulipanes.jpg",        description: "Hermoso arreglo de tulipanes en colores variados",          rating: 4.6, inStock: true },
-  { id: 3, name: "Orquídea Blanca Elegante", type: "Orquideas", occasion: "Boda",            color: "Blanco",     price: 65000, image: "/images/orquidea.jpg",         description: "Orquídea phalaenopsis blanca en maceta decorativa",         rating: 4.9, inStock: true },
-  { id: 4, name: "Girasoles Alegres",        type: "Girasoles", occasion: "Solo porque si",  color: "Amarillo",   price: 32000, image: "/images/girasoles.jpg",        description: "Ramo de girasoles frescos y radiantes",                    rating: 4.7, inStock: true },
-  { id: 5, name: "Lirios Rosados",           type: "Lirios",    occasion: "Simpatia",        color: "Rosa",       price: 42000, image: "/images/lirios.jpg",           description: "Elegante arreglo de lirios orientales rosados",            rating: 4.5, inStock: false },
-  { id: 6, name: "Rosas Blancas Novia",      type: "Rosas",     occasion: "Boda",            color: "Blanco",     price: 55000, image: "/images/rosas-blancas.jpg",   description: "Bouquet de rosas blancas ideal para novias",               rating: 4.9, inStock: true },
-  { id: 7, name: "Tulipanes Amarillos",      type: "Tulipanes", occasion: "Solo porque si",  color: "Amarillo",   price: 35000, image: "/images/tulipanes-amarillos.jpg", description: "Tulipanes holandeses amarillos brillantes",             rating: 4.6, inStock: true },
-  { id: 8, name: "Orquídea Morada Premium",  type: "Orquideas", occasion: "Aniversario",     color: "Morado",     price: 70000, image: "/images/orquidea-morada.jpg", description: "Exótica orquídea morada de colección",                     rating: 5.0, inStock: true },
+  { id: 1, name: "Rosas Rojas Premium",      type: "Rosas",     occasion: "Aniversario",    color: "Rojo",       price: 45000, image: "/images/rosas-rojas.jpg",          description: "Docena de rosas rojas colombianas de alta calidad",           rating: 4.8, inStock: true,  category: "flores", slug: "rosas-rojas-premium" },
+  { id: 2, name: "Tulipanes Arcoíris",        type: "Tulipanes", occasion: "Cumpleaños",      color: "Multicolor", price: 38000, image: "/images/tulipanes.jpg",             description: "Hermoso arreglo de tulipanes en colores variados",          rating: 4.6, inStock: true,  category: "flores", slug: "tulipanes-arcoiris" },
+  { id: 3, name: "Orquídea Blanca Elegante",  type: "Orquideas", occasion: "Boda",            color: "Blanco",     price: 65000, image: "/images/orquidea.jpg",              description: "Orquídea phalaenopsis blanca en maceta decorativa",         rating: 4.9, inStock: true,  category: "flores", slug: "orquidea-blanca-elegante" },
+  { id: 4, name: "Girasoles Alegres",         type: "Girasoles", occasion: "Solo porque si",  color: "Amarillo",   price: 32000, image: "/images/girasoles.jpg",             description: "Ramo de girasoles frescos y radiantes",                     rating: 4.7, inStock: true,  category: "flores", slug: "girasoles-alegres" },
+  { id: 5, name: "Lirios Rosados",            type: "Lirios",    occasion: "Simpatia",        color: "Rosa",       price: 42000, image: "/images/lirios.jpg",                description: "Elegante arreglo de lirios orientales rosados",             rating: 4.5, inStock: false, category: "flores", slug: "lirios-rosados" },
+  { id: 6, name: "Rosas Blancas Novia",       type: "Rosas",     occasion: "Boda",            color: "Blanco",     price: 55000, image: "/images/rosas-blancas.jpg",         description: "Bouquet de rosas blancas ideal para novias",                rating: 4.9, inStock: true,  category: "flores", slug: "rosas-blancas-novia" },
+  { id: 7, name: "Tulipanes Amarillos",       type: "Tulipanes", occasion: "Solo porque si",  color: "Amarillo",   price: 35000, image: "/images/tulipanes-amarillos.jpg",   description: "Tulipanes holandeses amarillos brillantes",                 rating: 4.6, inStock: true,  category: "flores", slug: "tulipanes-amarillos" },
+  { id: 8, name: "Orquídea Morada Premium",   type: "Orquideas", occasion: "Aniversario",     color: "Morado",     price: 70000, image: "/images/orquidea-morada.jpg",       description: "Exótica orquídea morada de colección",                      rating: 5.0, inStock: true,  category: "flores", slug: "orquidea-morada-premium" },
 ];
 
 const FILTER_OPTIONS = {
@@ -27,11 +28,13 @@ type SortOption = 'featured' | 'price-low' | 'price-high' | 'name' | 'rating';
 const formatPrice = (price: number) =>
   new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(price);
 
+/* ════════════════════════════════════════ PAGE ═══ */
+
 const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [viewMode,           setViewMode]           = useState<ViewMode>('grid');
-  const [sortBy,             setSortBy]             = useState<SortOption>('featured');
-  const [mobileFiltersOpen,  setMobileFiltersOpen]  = useState(false);
+  const [viewMode,          setViewMode]          = useState<ViewMode>('grid');
+  const [sortBy,            setSortBy]            = useState<SortOption>('featured');
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const activeFilters = {
     type:     searchParams.get('type')     || '',
@@ -42,20 +45,14 @@ const CatalogPage = () => {
     inStock:  searchParams.get('inStock') === 'true',
   };
 
-  // Cierra sidebar con Escape
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMobileFiltersOpen(false); };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  const applyFilter = (key: string, value: string) => {
-    const p = new URLSearchParams(searchParams);
-    value ? p.set(key, value) : p.delete(key);
-    setSearchParams(p);
-  };
-
-  const clearFilter    = (key: string) => { const p = new URLSearchParams(searchParams); p.delete(key); setSearchParams(p); };
+  const applyFilter     = (key: string, value: string) => { const p = new URLSearchParams(searchParams); value ? p.set(key, value) : p.delete(key); setSearchParams(p); };
+  const clearFilter     = (key: string) => { const p = new URLSearchParams(searchParams); p.delete(key); setSearchParams(p); };
   const clearAllFilters = () => setSearchParams({});
 
   const activeFilterCount = Object.values(activeFilters).filter(v => v !== '' && v !== false).length;
@@ -80,7 +77,6 @@ const CatalogPage = () => {
     }
   });
 
-  // Nombre del filtro activo para el título
   const activeLabel = activeFilters.type || activeFilters.occasion || activeFilters.color || '';
 
   return (
@@ -100,7 +96,7 @@ const CatalogPage = () => {
 
       <div className="container catalog-container">
 
-        {/* ── ACTIVE FILTER CHIPS ── */}
+        {/* ── CHIPS ── */}
         {activeFilterCount > 0 && (
           <div className="active-filters">
             <span className="active-filters-label">Filtros:</span>
@@ -114,11 +110,7 @@ const CatalogPage = () => {
 
         <div className="catalog-content">
 
-          {/* ── OVERLAY móvil ── */}
-          <div
-            className={`sidebar-overlay ${mobileFiltersOpen ? 'visible' : ''}`}
-            onClick={() => setMobileFiltersOpen(false)}
-          />
+          <div className={`sidebar-overlay ${mobileFiltersOpen ? 'visible' : ''}`} onClick={() => setMobileFiltersOpen(false)} />
 
           {/* ── SIDEBAR ── */}
           <aside className={`catalog-sidebar ${mobileFiltersOpen ? 'open' : ''}`}>
@@ -136,11 +128,7 @@ const CatalogPage = () => {
                     <span>{t}</span>
                   </label>
                 ))}
-                {activeFilters.type && (
-                  <button style={{fontSize:'11px',color:'#999',background:'none',border:'none',cursor:'pointer',textAlign:'left',padding:'0',fontFamily:'Montserrat,sans-serif'}} onClick={() => clearFilter('type')}>
-                    ✕ Quitar filtro
-                  </button>
-                )}
+                {activeFilters.type && <button className="clear-filter-inline" onClick={() => clearFilter('type')}>✕ Quitar filtro</button>}
               </div>
             </div>
 
@@ -153,11 +141,7 @@ const CatalogPage = () => {
                     <span>{o}</span>
                   </label>
                 ))}
-                {activeFilters.occasion && (
-                  <button style={{fontSize:'11px',color:'#999',background:'none',border:'none',cursor:'pointer',textAlign:'left',padding:'0',fontFamily:'Montserrat,sans-serif'}} onClick={() => clearFilter('occasion')}>
-                    ✕ Quitar filtro
-                  </button>
-                )}
+                {activeFilters.occasion && <button className="clear-filter-inline" onClick={() => clearFilter('occasion')}>✕ Quitar filtro</button>}
               </div>
             </div>
 
@@ -170,11 +154,7 @@ const CatalogPage = () => {
                     <span>{c}</span>
                   </label>
                 ))}
-                {activeFilters.color && (
-                  <button style={{fontSize:'11px',color:'#999',background:'none',border:'none',cursor:'pointer',textAlign:'left',padding:'0',fontFamily:'Montserrat,sans-serif'}} onClick={() => clearFilter('color')}>
-                    ✕ Quitar filtro
-                  </button>
-                )}
+                {activeFilters.color && <button className="clear-filter-inline" onClick={() => clearFilter('color')}>✕ Quitar filtro</button>}
               </div>
             </div>
 
@@ -212,7 +192,7 @@ const CatalogPage = () => {
             {sorted.length === 0 ? (
               <div className="no-results">
                 <p>No se encontraron productos con los filtros seleccionados.</p>
-                <Button variant="contained" onClick={clearAllFilters}>Limpiar filtros</Button>
+                <button className="btn-clear-results" onClick={clearAllFilters}>Limpiar filtros</button>
               </div>
             ) : (
               <div className={`products-${viewMode}`}>
@@ -228,12 +208,43 @@ const CatalogPage = () => {
   );
 };
 
+/* ════════════════════════════════════════ CARD ═══ */
+
 interface ProductCardProps {
   product: typeof PRODUCTS[0];
   viewMode: ViewMode;
 }
 
 const ProductCard = ({ product, viewMode }: ProductCardProps) => {
+  const { addItem, isInCart }       = useCart();
+  const { toggleItem, isInWishlist } = useWishlist();
+
+  const inCart     = isInCart(product.id);
+  const inWishlist = isInWishlist(product.id);
+
+  const handleAddToCart = () => {
+    addItem({
+      id:       product.id,
+      name:     product.name,
+      price:    product.price,
+      image:    product.image,
+      category: product.category,
+      slug:     product.slug,
+    });
+  };
+
+  const handleWishlist = () => {
+    toggleItem({
+      id:       product.id,
+      name:     product.name,
+      price:    product.price,
+      image:    product.image,
+      category: product.category,
+      slug:     product.slug,
+    });
+  };
+
+  /* ── LISTA ── */
   if (viewMode === 'list') {
     return (
       <div className="product-card-list">
@@ -241,6 +252,7 @@ const ProductCard = ({ product, viewMode }: ProductCardProps) => {
           <img src={product.image} alt={product.name} className="product-image" />
           {!product.inStock && <span className="out-of-stock-badge">Agotado</span>}
         </div>
+
         <div className="product-info-list">
           <h3 className="product-name">{product.name}</h3>
           <p className="product-description">{product.description}</p>
@@ -254,22 +266,48 @@ const ProductCard = ({ product, viewMode }: ProductCardProps) => {
             <span className="rating-value">{product.rating}</span>
           </div>
         </div>
+
         <div className="product-actions-list">
           <p className="product-price">{formatPrice(product.price)}</p>
-          <Button variant="contained" disabled={!product.inStock} fullWidth>
-            {product.inStock ? 'Agregar al Carrito' : 'Agotado'}
-          </Button>
+
+          <button
+            className={`btn-cart${inCart ? ' in-cart' : ''}`}
+            onClick={handleAddToCart}
+            disabled={!product.inStock}
+          >
+            <FaShoppingBasket size={13} />
+            {inCart ? 'En el carrito ✓' : product.inStock ? 'Añadir al carrito' : 'Agotado'}
+          </button>
+
+          <button
+            className={`btn-wish${inWishlist ? ' active' : ''}`}
+            onClick={handleWishlist}
+            aria-label={inWishlist ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+          >
+            {inWishlist ? <FaHeart size={14} /> : <FaRegHeart size={14} />}
+          </button>
         </div>
       </div>
     );
   }
 
+  /* ── GRID ── */
   return (
     <div className="product-card">
       <div className="product-image-wrapper">
         <img src={product.image} alt={product.name} className="product-image" />
         {!product.inStock && <span className="out-of-stock-badge">Agotado</span>}
+
+        {/* Corazón flotante sobre la imagen */}
+        <button
+          className={`btn-wish-overlay${inWishlist ? ' active' : ''}`}
+          onClick={handleWishlist}
+          aria-label={inWishlist ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+        >
+          {inWishlist ? <FaHeart size={14} /> : <FaRegHeart size={14} />}
+        </button>
       </div>
+
       <div className="product-info">
         <h3 className="product-name">{product.name}</h3>
         <p className="product-description">{product.description}</p>
@@ -283,9 +321,13 @@ const ProductCard = ({ product, viewMode }: ProductCardProps) => {
         </div>
         <div className="product-footer">
           <p className="product-price">{formatPrice(product.price)}</p>
-          <Button variant="contained" size="small" disabled={!product.inStock}>
-            {product.inStock ? 'Agregar' : 'Agotado'}
-          </Button>
+          <button
+            className={`btn-cart${inCart ? ' in-cart' : ''}`}
+            onClick={handleAddToCart}
+            disabled={!product.inStock}
+          >
+            {inCart ? '✓ En carrito' : product.inStock ? 'Agregar' : 'Agotado'}
+          </button>
         </div>
       </div>
     </div>

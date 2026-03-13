@@ -9,24 +9,31 @@ import CatalogPlants from './pages/catPlants/CatalogPlants'
 import ServicesPage from './pages/catServices/ServicesPage'
 import OurStoryPage from './pages/ourStory/OurStoryPage'
 import BlogPage from './pages/blog/BlogPage'
+import { CartProvider } from './context/CartContext'
+import { WishlistProvider } from './context/WishListContext'
+import CartPage from './pages/cart/CartPage'
 
 function App() {
-
   return (
     <>
-      <BrowserRouter>
-        <Header/>
-        <Routes>
-          <Route path={"/"} element={<Home/>}/>
-          <Route path={"/catalogo"} element={<CatalogPage/>}/>
-          <Route path="/catalogo-plantas" element={<CatalogPlants />} />
-          <Route path="/servicios" element={<ServicesPage />} />
-          <Route path="/nuestra-historia" element={<OurStoryPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-        </Routes>
-        <Footer/>
-        <FloatingButtons />
-      </BrowserRouter>
+    <BrowserRouter>
+      <CartProvider>
+        <WishlistProvider>
+          <Header />
+          <Routes>
+            <Route path="/"                  element={<Home />} />
+            <Route path="/catalogo"          element={<CatalogPage />} />
+            <Route path="/catalogo-plantas"  element={<CatalogPlants />} />
+            <Route path="/servicios"         element={<ServicesPage />} />
+            <Route path="/blog"              element={<BlogPage />} />
+            <Route path="/nuestra-historia"  element={<OurStoryPage />} />
+            <Route path="/carrito"           element={<CartPage />} />  {/* ← NUEVA */}
+          </Routes>
+          <Footer />
+          <FloatingButtons />
+        </WishlistProvider>
+      </CartProvider>
+    </BrowserRouter>
     </>
   )
 }
