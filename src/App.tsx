@@ -12,6 +12,7 @@ import BlogPage from './pages/blog/BlogPage'
 import { CartProvider } from './context/CartContext'
 import { WishlistProvider } from './context/WishListContext'
 import CartPage from './pages/cart/CartPage'
+import WishlistPage from './pages/wishlistPage/WishListPage'
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
             <Route path="/servicios"         element={<ServicesPage />} />
             <Route path="/blog"              element={<BlogPage />} />
             <Route path="/nuestra-historia"  element={<OurStoryPage />} />
-            <Route path="/carrito"           element={<CartPage />} />  {/* ← NUEVA */}
+            <Route path="/carrito"           element={<CartPage />} />
+            <Route path="/favoritos"         element={<WishlistPage />} />
           </Routes>
           <Footer />
           <FloatingButtons />

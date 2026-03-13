@@ -587,3 +587,92 @@
   .product-name { font-size: 13px; }
   .product-price { font-size: 1rem; }
 }
+
+/* ══════════════════════════════════════════════════
+   AÑADIR al final de CatalogPlants.css
+   ══════════════════════════════════════════════════ */
+
+/* ── btn-cart ── */
+.btn-cart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 16px;
+  background: #214f37;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+
+.btn-cart:hover:not(:disabled) { background: #1a3e2b; transform: translateY(-1px); }
+.btn-cart.in-cart               { background: #ddcf88; color: #1a2e22; }
+.btn-cart.in-cart:hover         { background: #c9ba6e; transform: none; }
+.btn-cart:disabled              { background: #d1d5db; color: #9ca3af; cursor: not-allowed; }
+
+/* ── btn-wish (lista) ── */
+.btn-wish {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: white;
+  border: 1.5px solid #e5e0d8;
+  color: #bbb;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-wish:hover  { border-color: #e87a7a; color: #e87a7a; background: #fff5f5; }
+.btn-wish.active { border-color: #e05252; color: #e05252; background: #fff5f5; }
+
+/* ── btn-wish-overlay (grid, flota sobre imagen) ── */
+.btn-wish-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  border: none;
+  color: #bbb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.25s, transform 0.25s, color 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.product-card:hover .btn-wish-overlay { opacity: 1; transform: scale(1); }
+.btn-wish-overlay.active              { opacity: 1; transform: scale(1); color: #e05252; }
+.btn-wish-overlay:hover               { color: #e05252; background: white; }
+
+/* ── btn-clear-results (reemplaza MUI Button en no-results) ── */
+.btn-clear-results {
+  padding: 10px 24px;
+  background: #214f37;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-clear-results:hover { background: #1a3e2b; }

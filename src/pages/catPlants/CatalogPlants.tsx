@@ -1,8 +1,9 @@
 import './CatalogPlants.css';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { FaFilter, FaTh, FaList, FaTimes } from 'react-icons/fa';
-import Button from '@mui/material/Button';
+import { FaFilter, FaTh, FaList, FaTimes, FaHeart, FaRegHeart, FaShoppingBasket } from 'react-icons/fa';
+import { useCart }     from '../../context/CartContext';
+import { useWishlist } from '../../context/WishListContext';
 
 import planta  from '../../assets/planta.png';
 import planta1 from '../../assets/planta1.png';
@@ -15,15 +16,15 @@ import planta7 from '../../assets/planta7.png';
 import planta8 from '../../assets/planta8.png';
 
 const PRODUCTS = [
-  { id: 1,  name: "Pothos Dorado",        type: "Potos",         location: "Interior", care: "Fácil",    color: "Verde",     price: 18000, image: planta,  description: "Planta trepadora de fácil cuidado, ideal para colgar",          rating: 4.7, inStock: true  },
-  { id: 2,  name: "Suculenta Mix",         type: "Suculentas",    location: "Interior", care: "Fácil",    color: "Verde",     price: 12000, image: planta1, description: "Arreglo de suculentas variadas en maceta decorativa",           rating: 4.8, inStock: true  },
-  { id: 3,  name: "Helecho Boston",        type: "Helechos",      location: "Interior", care: "Moderado", color: "Verde",     price: 25000, image: planta2, description: "Helecho frondoso ideal para interiores húmedos",                 rating: 4.5, inStock: true  },
-  { id: 4,  name: "Monstera Deliciosa",    type: "Tropicales",    location: "Interior", care: "Moderado", color: "Verde",     price: 65000, image: planta3, description: "La reina de las plantas de interior, hojas grandes y elegantes", rating: 4.9, inStock: true  },
-  { id: 5,  name: "Cactus Barrel",         type: "Cactus",        location: "Interior", care: "Fácil",    color: "Verde",     price: 15000, image: planta4, description: "Cactus barril de bajo mantenimiento y larga vida",               rating: 4.6, inStock: true  },
-  { id: 6,  name: "Lirio de la Paz",       type: "Lirio de la Paz", location: "Interior", care: "Fácil", color: "Blanco",    price: 32000, image: planta5, description: "Purifica el aire y florece en poca luz",                        rating: 4.8, inStock: true  },
-  { id: 7,  name: "Palmera Areca",         type: "Palmeras",      location: "Interior", care: "Moderado", color: "Verde",     price: 48000, image: planta6, description: "Palmera tropical que aporta frescura a cualquier espacio",       rating: 4.7, inStock: false },
-  { id: 8,  name: "Cactus San Pedro",      type: "Cactus",        location: "Exterior", care: "Fácil",    color: "Verde",     price: 22000, image: planta7, description: "Cactus columnar resistente, perfecto para exteriores soleados", rating: 4.4, inStock: true  },
-  { id: 9,  name: "Orquídea Phalaenopsis", type: "Tropicales",    location: "Interior", care: "Experto",  color: "Multicolor",price: 55000, image: planta8, description: "La orquídea más popular, flores duraderas y elegantes",         rating: 5.0, inStock: true  },
+  { id: 201, name: "Pothos Dorado",         type: "Potos",           location: "Interior", care: "Fácil",    price: 18000, image: planta,  description: "Planta trepadora de fácil cuidado, ideal para colgar",          rating: 4.7, inStock: true,  category: "plantas", slug: "pothos-dorado" },
+  { id: 202, name: "Suculenta Mix",          type: "Suculentas",      location: "Interior", care: "Fácil",    price: 12000, image: planta1, description: "Arreglo de suculentas variadas en maceta decorativa",           rating: 4.8, inStock: true,  category: "plantas", slug: "suculenta-mix" },
+  { id: 203, name: "Helecho Boston",         type: "Helechos",        location: "Interior", care: "Moderado", price: 25000, image: planta2, description: "Helecho frondoso ideal para interiores húmedos",                 rating: 4.5, inStock: true,  category: "plantas", slug: "helecho-boston" },
+  { id: 204, name: "Monstera Deliciosa",     type: "Tropicales",      location: "Interior", care: "Moderado", price: 65000, image: planta3, description: "La reina de las plantas de interior, hojas grandes y elegantes", rating: 4.9, inStock: true,  category: "plantas", slug: "monstera-deliciosa" },
+  { id: 205, name: "Cactus Barrel",          type: "Cactus",          location: "Interior", care: "Fácil",    price: 15000, image: planta4, description: "Cactus barril de bajo mantenimiento y larga vida",               rating: 4.6, inStock: true,  category: "plantas", slug: "cactus-barrel" },
+  { id: 206, name: "Lirio de la Paz",        type: "Lirio de la Paz", location: "Interior", care: "Fácil",    price: 32000, image: planta5, description: "Purifica el aire y florece en poca luz",                        rating: 4.8, inStock: true,  category: "plantas", slug: "lirio-paz" },
+  { id: 207, name: "Palmera Areca",          type: "Palmeras",        location: "Interior", care: "Moderado", price: 48000, image: planta6, description: "Palmera tropical que aporta frescura a cualquier espacio",       rating: 4.7, inStock: false, category: "plantas", slug: "palmera-areca" },
+  { id: 208, name: "Cactus San Pedro",       type: "Cactus",          location: "Exterior", care: "Fácil",    price: 22000, image: planta7, description: "Cactus columnar resistente, perfecto para exteriores soleados", rating: 4.4, inStock: true,  category: "plantas", slug: "cactus-san-pedro" },
+  { id: 209, name: "Orquídea Phalaenopsis",  type: "Tropicales",      location: "Interior", care: "Experto",  price: 55000, image: planta8, description: "La orquídea más popular, flores duraderas y elegantes",         rating: 5.0, inStock: true,  category: "plantas", slug: "orquidea-phalaenopsis" },
 ];
 
 const FILTER_OPTIONS = {
@@ -32,11 +33,19 @@ const FILTER_OPTIONS = {
   care:     ["Fácil", "Moderado", "Experto"],
 };
 
+const CARE_COLOR: Record<string, string> = {
+  'Fácil':    'rgba(33,79,55,0.07)',
+  'Moderado': 'rgba(212,168,67,0.1)',
+  'Experto':  'rgba(200,75,49,0.08)',
+};
+
 type ViewMode   = 'grid' | 'list';
 type SortOption = 'featured' | 'price-low' | 'price-high' | 'name' | 'rating';
 
 const formatPrice = (price: number) =>
   new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(price);
+
+/* ════════════════════════════════════════ PAGE ═══ */
 
 const CatalogPlants = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -59,11 +68,7 @@ const CatalogPlants = () => {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  const applyFilter  = (key: string, value: string) => {
-    const p = new URLSearchParams(searchParams);
-    value ? p.set(key, value) : p.delete(key);
-    setSearchParams(p);
-  };
+  const applyFilter     = (key: string, value: string) => { const p = new URLSearchParams(searchParams); value ? p.set(key, value) : p.delete(key); setSearchParams(p); };
   const clearFilter     = (key: string) => { const p = new URLSearchParams(searchParams); p.delete(key); setSearchParams(p); };
   const clearAllFilters = () => setSearchParams({});
 
@@ -122,7 +127,6 @@ const CatalogPlants = () => {
 
         <div className="plants-content">
 
-          {/* overlay móvil */}
           <div className={`sidebar-overlay ${mobileFiltersOpen ? 'visible' : ''}`} onClick={() => setMobileFiltersOpen(false)} />
 
           {/* ── SIDEBAR ── */}
@@ -132,7 +136,6 @@ const CatalogPlants = () => {
               <button className="sidebar-close" onClick={() => setMobileFiltersOpen(false)}><FaTimes /></button>
             </div>
 
-            {/* Tipo */}
             <div className="filter-section">
               <h4 className="filter-title">Por Tipo</h4>
               <div className="filter-options">
@@ -146,7 +149,6 @@ const CatalogPlants = () => {
               </div>
             </div>
 
-            {/* Ubicación */}
             <div className="filter-section">
               <h4 className="filter-title">Ubicación</h4>
               <div className="filter-options">
@@ -160,7 +162,6 @@ const CatalogPlants = () => {
               </div>
             </div>
 
-            {/* Nivel de cuidado */}
             <div className="filter-section">
               <h4 className="filter-title">Nivel de Cuidado</h4>
               <div className="filter-options">
@@ -174,7 +175,6 @@ const CatalogPlants = () => {
               </div>
             </div>
 
-            {/* Disponibilidad */}
             <div className="filter-section">
               <h4 className="filter-title">Disponibilidad</h4>
               <label className="filter-option">
@@ -209,11 +209,13 @@ const CatalogPlants = () => {
             {sorted.length === 0 ? (
               <div className="no-results">
                 <p>No se encontraron plantas con los filtros seleccionados.</p>
-                <Button variant="contained" onClick={clearAllFilters}>Limpiar filtros</Button>
+                <button className="btn-clear-results" onClick={clearAllFilters}>Limpiar filtros</button>
               </div>
             ) : (
               <div className={`products-${viewMode}`}>
-                {sorted.map(product => <PlantCard key={product.id} product={product} viewMode={viewMode} />)}
+                {sorted.map(product => (
+                  <PlantCard key={product.id} product={product} viewMode={viewMode} />
+                ))}
               </div>
             )}
           </main>
@@ -223,18 +225,29 @@ const CatalogPlants = () => {
   );
 };
 
+/* ════════════════════════════════════════ CARD ═══ */
+
 interface PlantCardProps {
   product: typeof PRODUCTS[0];
   viewMode: ViewMode;
 }
 
 const PlantCard = ({ product, viewMode }: PlantCardProps) => {
-  const careBadgeColor: Record<string, string> = {
-    'Fácil':    'rgba(33,79,55,0.07)',
-    'Moderado': 'rgba(212,168,67,0.1)',
-    'Experto':  'rgba(200,75,49,0.08)',
+  const { addItem, isInCart }        = useCart();
+  const { toggleItem, isInWishlist } = useWishlist();
+
+  const inCart     = isInCart(product.id);
+  const inWishlist = isInWishlist(product.id);
+
+  const handleCart = () => {
+    addItem({ id: product.id, name: product.name, price: product.price, image: product.image, category: product.category, slug: product.slug });
   };
 
+  const handleWish = () => {
+    toggleItem({ id: product.id, name: product.name, price: product.price, image: product.image, category: product.category, slug: product.slug });
+  };
+
+  /* ── LISTA ── */
   if (viewMode === 'list') {
     return (
       <div className="product-card-list">
@@ -242,6 +255,7 @@ const PlantCard = ({ product, viewMode }: PlantCardProps) => {
           <img src={product.image} alt={product.name} className="product-image" />
           {!product.inStock && <span className="out-of-stock-badge">Agotado</span>}
         </div>
+
         <div className="product-info-list">
           <h3 className="product-name">{product.name}</h3>
           <p className="product-description">{product.description}</p>
@@ -250,30 +264,54 @@ const PlantCard = ({ product, viewMode }: PlantCardProps) => {
             <span className="product-separator">•</span>
             <span className="product-occasion">{product.location}</span>
             <span className="product-separator">•</span>
-            <span className="product-type" style={{background: careBadgeColor[product.care]}}>{product.care}</span>
+            <span className="product-type" style={{ background: CARE_COLOR[product.care] }}>{product.care}</span>
           </div>
           <div className="product-rating">
             {'⭐'.repeat(Math.round(product.rating))}
             <span className="rating-value">{product.rating}</span>
           </div>
         </div>
+
         <div className="product-actions-list">
           <p className="product-price">{formatPrice(product.price)}</p>
-          <Button variant="contained" disabled={!product.inStock} fullWidth>
-            {product.inStock ? 'Agregar al Carrito' : 'Agotado'}
-          </Button>
+          <button
+            className={`btn-cart${inCart ? ' in-cart' : ''}`}
+            onClick={handleCart}
+            disabled={!product.inStock}
+          >
+            <FaShoppingBasket size={13} />
+            {inCart ? 'En el carrito ✓' : product.inStock ? 'Añadir al carrito' : 'Agotado'}
+          </button>
+          <button
+            className={`btn-wish${inWishlist ? ' active' : ''}`}
+            onClick={handleWish}
+            aria-label={inWishlist ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+          >
+            {inWishlist ? <FaHeart size={14} /> : <FaRegHeart size={14} />}
+          </button>
         </div>
       </div>
     );
   }
 
+  /* ── GRID ── */
   return (
     <div className="product-card">
       <div className="product-image-wrapper">
         <img src={product.image} alt={product.name} className="product-image" />
         {!product.inStock && <span className="out-of-stock-badge">Agotado</span>}
-        <span className="care-badge" style={{background: careBadgeColor[product.care]}}>{product.care}</span>
+        <span className="care-badge" style={{ background: CARE_COLOR[product.care] }}>{product.care}</span>
+
+        {/* Corazón flotante */}
+        <button
+          className={`btn-wish-overlay${inWishlist ? ' active' : ''}`}
+          onClick={handleWish}
+          aria-label={inWishlist ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+        >
+          {inWishlist ? <FaHeart size={13} /> : <FaRegHeart size={13} />}
+        </button>
       </div>
+
       <div className="product-info">
         <h3 className="product-name">{product.name}</h3>
         <p className="product-description">{product.description}</p>
@@ -287,9 +325,13 @@ const PlantCard = ({ product, viewMode }: PlantCardProps) => {
         </div>
         <div className="product-footer">
           <p className="product-price">{formatPrice(product.price)}</p>
-          <Button variant="contained" size="small" disabled={!product.inStock}>
-            {product.inStock ? 'Agregar' : 'Agotado'}
-          </Button>
+          <button
+            className={`btn-cart${inCart ? ' in-cart' : ''}`}
+            onClick={handleCart}
+            disabled={!product.inStock}
+          >
+            {inCart ? '✓ En carrito' : product.inStock ? 'Agregar' : 'Agotado'}
+          </button>
         </div>
       </div>
     </div>
