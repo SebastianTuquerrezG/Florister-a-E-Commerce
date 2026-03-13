@@ -870,3 +870,74 @@
 @media (max-width: 480px) {
   .services-page .services-grid { gap: 16px; }
 }
+
+/* ══════════════════════════════════════════════════════
+   AÑADIR al final de ServicesPage.css
+   ══════════════════════════════════════════════════════ */
+
+/* ── BARRA DE BÚSQUEDA (dentro del header) ── */
+.services-page .svc-search-bar {
+  display: flex;
+  align-items: center;
+  max-width: 520px;
+  margin-top: 24px;
+  background: rgba(255,255,255,0.07);
+  border: 1.5px solid rgba(221,207,136,0.25);
+  border-radius: 3px;
+  padding: 4px 4px 4px 14px;
+  gap: 10px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.services-page .svc-search-bar:focus-within {
+  border-color: #ddcf88;
+  background: rgba(255,255,255,0.11);
+}
+
+.services-page .svc-search-icon {
+  color: rgba(221,207,136,0.6);
+  flex-shrink: 0;
+}
+
+.services-page .svc-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #f5f0f0;
+  background: transparent;
+  padding: 9px 0;
+}
+
+.services-page .svc-search-input::placeholder {
+  color: rgba(245,240,240,0.35);
+}
+
+.services-page .svc-search-clear {
+  background: none;
+  border: none;
+  color: rgba(245,240,240,0.4);
+  cursor: pointer;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  transition: color 0.2s;
+}
+
+.services-page .svc-search-clear:hover { color: #f5f0f0; }
+
+/* ── chip especial para búsqueda de texto ── */
+.services-page .filter-chip--search {
+  background: rgba(221,207,136,0.12);
+  border-color: rgba(221,207,136,0.35);
+  color: #c8b86a;
+}
+
+/* ── results-count con <em> ── */
+.services-page .results-count em {
+  font-style: italic;
+  color: #214f37;
+}

@@ -16,15 +16,15 @@ import planta7 from '../../assets/planta7.png';
 import planta8 from '../../assets/planta8.png';
 
 const PRODUCTS = [
-  { id: 201, name: "Pothos Dorado",         type: "Potos",           location: "Interior", care: "Fácil",    price: 18000, image: planta,  description: "Planta trepadora de fácil cuidado, ideal para colgar",          rating: 4.7, inStock: true,  category: "plantas", slug: "pothos-dorado" },
-  { id: 202, name: "Suculenta Mix",          type: "Suculentas",      location: "Interior", care: "Fácil",    price: 12000, image: planta1, description: "Arreglo de suculentas variadas en maceta decorativa",           rating: 4.8, inStock: true,  category: "plantas", slug: "suculenta-mix" },
-  { id: 203, name: "Helecho Boston",         type: "Helechos",        location: "Interior", care: "Moderado", price: 25000, image: planta2, description: "Helecho frondoso ideal para interiores húmedos",                 rating: 4.5, inStock: true,  category: "plantas", slug: "helecho-boston" },
-  { id: 204, name: "Monstera Deliciosa",     type: "Tropicales",      location: "Interior", care: "Moderado", price: 65000, image: planta3, description: "La reina de las plantas de interior, hojas grandes y elegantes", rating: 4.9, inStock: true,  category: "plantas", slug: "monstera-deliciosa" },
-  { id: 205, name: "Cactus Barrel",          type: "Cactus",          location: "Interior", care: "Fácil",    price: 15000, image: planta4, description: "Cactus barril de bajo mantenimiento y larga vida",               rating: 4.6, inStock: true,  category: "plantas", slug: "cactus-barrel" },
-  { id: 206, name: "Lirio de la Paz",        type: "Lirio de la Paz", location: "Interior", care: "Fácil",    price: 32000, image: planta5, description: "Purifica el aire y florece en poca luz",                        rating: 4.8, inStock: true,  category: "plantas", slug: "lirio-paz" },
-  { id: 207, name: "Palmera Areca",          type: "Palmeras",        location: "Interior", care: "Moderado", price: 48000, image: planta6, description: "Palmera tropical que aporta frescura a cualquier espacio",       rating: 4.7, inStock: false, category: "plantas", slug: "palmera-areca" },
-  { id: 208, name: "Cactus San Pedro",       type: "Cactus",          location: "Exterior", care: "Fácil",    price: 22000, image: planta7, description: "Cactus columnar resistente, perfecto para exteriores soleados", rating: 4.4, inStock: true,  category: "plantas", slug: "cactus-san-pedro" },
-  { id: 209, name: "Orquídea Phalaenopsis",  type: "Tropicales",      location: "Interior", care: "Experto",  price: 55000, image: planta8, description: "La orquídea más popular, flores duraderas y elegantes",         rating: 5.0, inStock: true,  category: "plantas", slug: "orquidea-phalaenopsis" },
+  { id: 201, name: "Pothos Dorado",          type: "Potos",           location: "Interior", care: "Fácil",    price: 18000, image: planta,  description: "Planta trepadora de fácil cuidado, ideal para colgar",           color: "rojo", occasion:"navidad", rating: 4.7, inStock: true,  category: "plantas", slug: "pothos-dorado" },
+  { id: 202, name: "Suculenta Mix",          type: "Suculentas",      location: "Interior", care: "Fácil",    price: 12000, image: planta1, description: "Arreglo de suculentas variadas en maceta decorativa",            color: "rojo", occasion:"navidad", rating: 4.8, inStock: true,  category: "plantas", slug: "suculenta-mix" },
+  { id: 203, name: "Helecho Boston",         type: "Helechos",        location: "Interior", care: "Moderado", price: 25000, image: planta2, description: "Helecho frondoso ideal para interiores húmedos",                 color: "rojo", occasion:"navidad", rating: 4.5, inStock: true,  category: "plantas", slug: "helecho-boston" },
+  { id: 204, name: "Monstera Deliciosa",     type: "Tropicales",      location: "Interior", care: "Moderado", price: 65000, image: planta3, description: "La reina de las plantas de interior, hojas grandes y elegantes", color: "rojo", occasion:"navidad", rating: 4.9, inStock: true,  category: "plantas", slug: "monstera-deliciosa" },
+  { id: 205, name: "Cactus Barrel",          type: "Cactus",          location: "Interior", care: "Fácil",    price: 15000, image: planta4, description: "Cactus barril de bajo mantenimiento y larga vida",               color: "rojo", occasion:"navidad", rating: 4.6, inStock: true,  category: "plantas", slug: "cactus-barrel" },
+  { id: 206, name: "Lirio de la Paz",        type: "Lirio de la Paz", location: "Interior", care: "Fácil",    price: 32000, image: planta5, description: "Purifica el aire y florece en poca luz",                         color: "rojo", occasion:"navidad", rating: 4.8, inStock: true,  category: "plantas", slug: "lirio-paz" },
+  { id: 207, name: "Palmera Areca",          type: "Palmeras",        location: "Interior", care: "Moderado", price: 48000, image: planta6, description: "Palmera tropical que aporta frescura a cualquier espacio",       color: "rojo", occasion:"navidad", rating: 4.7, inStock: false, category: "plantas", slug: "palmera-areca" },
+  { id: 208, name: "Cactus San Pedro",       type: "Cactus",          location: "Exterior", care: "Fácil",    price: 22000, image: planta7, description: "Cactus columnar resistente, perfecto para exteriores soleados",  color: "rojo", occasion:"navidad", rating: 4.4, inStock: true,  category: "plantas", slug: "cactus-san-pedro" },
+  { id: 209, name: "Orquídea Phalaenopsis",  type: "Tropicales",      location: "Interior", care: "Experto",  price: 55000, image: planta8, description: "La orquídea más popular, flores duraderas y elegantes",          color: "rojo", occasion:"navidad", rating: 5.0, inStock: true,  category: "plantas", slug: "orquidea-phalaenopsis" },
 ];
 
 const FILTER_OPTIONS = {
@@ -56,9 +56,12 @@ const CatalogPlants = () => {
   const activeFilters = {
     type:     searchParams.get('type')     || '',
     location: searchParams.get('location') || '',
+    occasion: searchParams.get('occasion') || '',
+    color:    searchParams.get('color')    || '',
     care:     searchParams.get('care')     || '',
     priceMin: searchParams.get('priceMin') || '',
     priceMax: searchParams.get('priceMax') || '',
+    minRating: searchParams.get('minRating') || '',
     inStock:  searchParams.get('inStock') === 'true',
   };
 
@@ -72,14 +75,27 @@ const CatalogPlants = () => {
   const clearFilter     = (key: string) => { const p = new URLSearchParams(searchParams); p.delete(key); setSearchParams(p); };
   const clearAllFilters = () => setSearchParams({});
 
-  const activeFilterCount = Object.values(activeFilters).filter(v => v !== '' && v !== false).length;
+  const activeFilterCount = [
+    activeFilters.type,
+    activeFilters.occasion,
+    activeFilters.color,
+    activeFilters.care,
+    activeFilters.location,
+    activeFilters.priceMin,
+    activeFilters.priceMax,
+    activeFilters.minRating,
+    activeFilters.inStock ? 'true' : '',
+  ].filter(v => (typeof v === 'string' ? v !== '' : v === true)).length;
 
   const filtered = PRODUCTS.filter(p => {
     if (activeFilters.type     && p.type     !== activeFilters.type)     return false;
     if (activeFilters.location && p.location !== activeFilters.location) return false;
     if (activeFilters.care     && p.care     !== activeFilters.care)     return false;
+    if (activeFilters.occasion && p.occasion !== activeFilters.occasion) return false;
+    if (activeFilters.color    && p.color    !== activeFilters.color)    return false;
     if (activeFilters.priceMin && p.price < parseInt(activeFilters.priceMin)) return false;
     if (activeFilters.priceMax && p.price > parseInt(activeFilters.priceMax)) return false;
+    if (activeFilters.minRating && p.rating < parseFloat(activeFilters.minRating)) return false;
     if (activeFilters.inStock  && !p.inStock) return false;
     return true;
   });
@@ -120,7 +136,12 @@ const CatalogPlants = () => {
             {activeFilters.type     && <div className="filter-chip"><span>Tipo: {activeFilters.type}</span><button onClick={() => clearFilter('type')}><FaTimes size={10}/></button></div>}
             {activeFilters.location && <div className="filter-chip"><span>Lugar: {activeFilters.location}</span><button onClick={() => clearFilter('location')}><FaTimes size={10}/></button></div>}
             {activeFilters.care     && <div className="filter-chip"><span>Cuidado: {activeFilters.care}</span><button onClick={() => clearFilter('care')}><FaTimes size={10}/></button></div>}
+            {activeFilters.occasion && <div className="filter-chip"><span>Occasion: {activeFilters.occasion}</span><button onClick={() => clearFilter('occasion')}><FaTimes size={10}/></button></div>}
+            {activeFilters.color    && <div className="filter-chip"><span>Color: {activeFilters.color}</span><button onClick={() => clearFilter('color')}><FaTimes size={10}/></button></div>}
             {activeFilters.inStock  && <div className="filter-chip"><span>En stock</span><button onClick={() => clearFilter('inStock')}><FaTimes size={10}/></button></div>}
+            {activeFilters.minRating && <div className="filter-chip"><span>Rating mínimo: {activeFilters.minRating}</span><button onClick={() => clearFilter('minRating')}><FaTimes size={10}/></button></div>}
+            {activeFilters.priceMin && (<div className="filter-chip"><span>Desde {formatPrice(parseInt(activeFilters.priceMin))}</span><button onClick={() => clearFilter('priceMin')}><FaTimes size={10}/></button></div>)}
+            {activeFilters.priceMax && (<div className="filter-chip"><span>Hasta {formatPrice(parseInt(activeFilters.priceMax))}</span><button onClick={() => clearFilter('priceMax')}><FaTimes size={10}/></button></div>)}
             <button className="clear-all-filters" onClick={clearAllFilters}>Limpiar todo</button>
           </div>
         )}
@@ -182,6 +203,94 @@ const CatalogPlants = () => {
                 <span>Solo en stock</span>
               </label>
             </div>
+
+            <div className="filter-section">
+              <h4 className="filter-title">Rango de Precio</h4>          
+              <div className="price-range-wrap">
+                <div className="price-inputs">
+                  <div className="price-input-group">
+                    <label>Mínimo</label>
+                    <div className="price-input-inner">
+                      <span>$</span>
+                      <input
+                        type="number"
+                        min={0}
+                        step={5000}
+                        placeholder="0"
+                        value={activeFilters.priceMin}
+                        onChange={e => applyFilter('priceMin', e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="price-range-sep">—</div>
+                  <div className="price-input-group">
+                    <label>Máximo</label>
+                    <div className="price-input-inner">
+                      <span>$</span>
+                      <input
+                        type="number"
+                        min={0}
+                        step={5000}
+                        placeholder="∞"
+                        value={activeFilters.priceMax}
+                        onChange={e => applyFilter('priceMax', e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+          
+                <div className="price-shortcuts">
+                  {[
+                    { label: '< $20k',   min: '',      max: '20000'  },
+                    { label: '$20–50k',  min: '20000', max: '50000'  },
+                    { label: '$50–100k', min: '50000', max: '100000' },
+                    { label: '> $100k',  min: '100000',max: ''       },
+                  ].map(({ label, min, max }) => {
+                    const active = activeFilters.priceMin === min && activeFilters.priceMax === max;
+                    return (
+                      <button
+                        key={label}
+                        className={`price-shortcut${active ? ' active' : ''}`}
+                        onClick={() => {
+                          const p = new URLSearchParams(searchParams);
+                          min ? p.set('priceMin', min) : p.delete('priceMin');
+                          max ? p.set('priceMax', max) : p.delete('priceMax');
+                          setSearchParams(p);
+                        }}
+                      >
+                        {label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>    
+
+            <div className="filter-section">
+              <h4 className="filter-title">Calificación Mínima</h4>
+              <div className="filter-options">
+                {[
+                  { value: '4.5', label: '⭐⭐⭐⭐⭐ 4.5+' },
+                  { value: '4',   label: '⭐⭐⭐⭐  4.0+' },
+                  { value: '3',   label: '⭐⭐⭐   3.0+' },
+                ].map(({ value, label }) => (
+                  <label key={value} className="filter-option">
+                    <input
+                      type="radio"
+                      name="minRating"
+                      checked={activeFilters.minRating === value}
+                      onChange={() => applyFilter('minRating', value)}
+                    />
+                    <span className="rating-option-label">{label}</span>
+                  </label>
+                ))}
+                {activeFilters.minRating && (
+                  <button className="clear-filter-inline" onClick={() => clearFilter('minRating')}>
+                    ✕ Quitar filtro
+                  </button>
+                )}
+              </div>
+            </div>        
           </aside>
 
           {/* ── MAIN ── */}

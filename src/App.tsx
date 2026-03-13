@@ -13,6 +13,7 @@ import { CartProvider } from './context/CartContext'
 import { WishlistProvider } from './context/WishListContext'
 import CartPage from './pages/cart/CartPage'
 import WishlistPage from './pages/wishlistPage/WishListPage'
+import SearchPage from './pages/search/SearchPage'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/nuestra-historia"  element={<OurStoryPage />} />
             <Route path="/carrito"           element={<CartPage />} />
             <Route path="/favoritos"         element={<WishlistPage />} />
+            <Route path="/buscar"            element={<SearchPage />} />
           </Routes>
           <Footer />
           <FloatingButtons />
