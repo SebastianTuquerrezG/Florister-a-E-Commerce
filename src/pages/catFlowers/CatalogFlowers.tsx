@@ -14,11 +14,13 @@ const PRODUCTS = [
   { id: 6, name: "Rosas Blancas Novia",       type: "Rosas",     occasion: "Boda",            color: "Blanco",     price: 55000, image: "/images/rosas-blancas.jpg",         description: "Bouquet de rosas blancas ideal para novias",                rating: 4.9, inStock: true,  category: "flores", slug: "rosas-blancas-novia" },
   { id: 7, name: "Tulipanes Amarillos",       type: "Tulipanes", occasion: "Solo porque si",  color: "Amarillo",   price: 35000, image: "/images/tulipanes-amarillos.jpg",   description: "Tulipanes holandeses amarillos brillantes",                 rating: 4.6, inStock: true,  category: "flores", slug: "tulipanes-amarillos" },
   { id: 8, name: "Orquídea Morada Premium",   type: "Orquideas", occasion: "Aniversario",     color: "Morado",     price: 70000, image: "/images/orquidea-morada.jpg",       description: "Exótica orquídea morada de colección",                      rating: 5.0, inStock: true,  category: "flores", slug: "orquidea-morada-premium" },
+  { id: 9, name: "Girasoles y Margaritas",    type: "Girasoles", occasion: "Navidad",      color: "Multicolor", price: 30000, image: "/images/girasoles-margaritas.jpg", description: "Ramo mixto de girasoles y margaritas frescas",            rating: 4.4, inStock: true,  category: "flores", slug: "girasoles-margaritas" },  
+  { id: 10, name: "Lirios Blancos Puros",      type: "Lirios",    occasion: "San Valentín",     color: "Blanco",     price: 48000, image: "/images/lirios-blancos.jpg",         description: "Arreglo de lirios blancos orientales puros y elegantes",   rating: 4.8, inStock: true,  category: "flores", slug: "lirios-blancos-puros" },
 ];
 
 const FILTER_OPTIONS = {
   type:     ["Rosas", "Tulipanes", "Orquideas", "Girasoles", "Lirios"],
-  occasion: ["Boda", "Cumpleaños", "Aniversario", "Simpatia", "Solo porque si"],
+  occasion: ["Boda", "Cumpleaños", "Aniversario", "Simpatia", "Solo porque si", "Navidad", "San Valentín"],
   color:    ["Rojo", "Blanco", "Amarillo", "Rosa", "Morado", "Multicolor"],
 };
 

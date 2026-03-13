@@ -10,7 +10,7 @@ const services = [
     title: 'Decoración & Eventos',
     description: 'Transformamos tus celebraciones en momentos únicos. Bodas, eventos corporativos, quinceañeras y baby showers con arreglos florales que cuentan tu historia.',
     items: ['Planeacion de bodas', 'Eventos Corporativos', 'Quinceañeras', 'Baby Showers'],
-    link: '/services/events',
+    link: '/servicios',
   },
   {
     icon: <MdLocalShipping size={32} />,
@@ -18,7 +18,7 @@ const services = [
     title: 'Entrega a Domicilio',
     description: 'Llevamos la naturaleza hasta tu puerta. Envíos el mismo día, programados, suscripciones mensuales y empaques regalo para ocasiones especiales.',
     items: ['El Mismo Día', 'Programados', 'Suscripciones Mensuales', 'Empaques de Regalo'],
-    link: '/services/delivery',
+    link: '/servicios',
   },
   {
     icon: <RiScissors2Line size={32} />,
@@ -26,7 +26,7 @@ const services = [
     title: 'Diseños a Medida',
     description: 'Creamos el arreglo de tus sueños. Consultas personalizadas, talleres de floricultura y composiciones únicas diseñadas especialmente para ti.',
     items: ['Arreglos Personalizados', 'Clases de Taller', 'Consultas de Diseño', 'Tarjetas Personalizadas'],
-    link: '/services/custom',
+    link: '/catalogo',
   },
 ];
 

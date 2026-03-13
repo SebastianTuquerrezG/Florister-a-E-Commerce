@@ -86,7 +86,7 @@ const OurStorySection = () => {
           {/* BOTON EMERGENTE */}
           <div className={`story-cta-wrap ${btnVisible ? 'revealed' : ''}`}>
             <div className='story-cta-line' />
-            <Link to='/our-story' className='story-cta-btn'>
+            <Link to='/nuestra-historia' className='story-cta-btn'>
               <span className='story-cta-btn__text'>Conoce nuestra historia</span>
               <span className='story-cta-btn__icon'>
                 <TbArrowUpRight size={18} />

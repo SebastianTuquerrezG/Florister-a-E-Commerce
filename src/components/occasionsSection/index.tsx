@@ -8,10 +8,6 @@ import floridos10 from '../../assets/floridos10.png';
 import floridos11 from '../../assets/floridos11.png';
 import floridos12 from '../../assets/floridos12.png';
 
-// Importa tus imágenes aquí cuando las tengas:
-// import imgNavidad    from '../../assets/occasions/navidad.png';
-// import imgCumpleanos from '../../assets/occasions/cumpleanos.png';
-
 const occasions = [
   {
     id: 'navidad',
@@ -21,7 +17,10 @@ const occasions = [
     color: '#c84b31',
     accent: 'rgba(200, 75, 49, 0.12)',
     size: 'tall',
-    image: floridos11, // reemplaza con imgNavidad
+    image: floridos11,
+    // → catálogo de flores sin filtro de ocasión específico para navidad
+    // (no existe en FILTER_OPTIONS), mandamos al catálogo general
+    href: '/catalogo?occasion=Navidad',
   },
   {
     id: 'cumpleanos',
@@ -32,6 +31,8 @@ const occasions = [
     accent: 'rgba(212, 168, 67, 0.12)',
     size: 'tall',
     image: floridos12,
+    // "Cumpleaños" coincide exactamente con el valor en PRODUCTS
+    href: '/catalogo?occasion=Cumplea%C3%B1os',
   },
   {
     id: 'aniversario',
@@ -42,6 +43,7 @@ const occasions = [
     accent: 'rgba(201, 99, 122, 0.12)',
     size: 'wide',
     image: floridos10,
+    href: '/catalogo?occasion=Aniversario',
   },
   {
     id: 'amor',
@@ -52,6 +54,8 @@ const occasions = [
     accent: 'rgba(224, 90, 90, 0.12)',
     size: 'normal',
     image: floridos,
+    // "Solo porque si" es la ocasión más cercana a regalo romántico sin evento
+    href: '/catalogo?occasion=Solo%20porque%20si',
   },
   {
     id: 'graduacion',
@@ -62,17 +66,8 @@ const occasions = [
     accent: 'rgba(90, 143, 201, 0.12)',
     size: 'normal',
     image: floridos2,
+    href: '/catalogo?occasion=Cumplea%C3%B1os',
   },
-  // {
-  //   id: 'boda',
-  //   icon: GiFlowerPot,
-  //   name: 'Bodas',
-  //   subtitle: 'El día más especial de tu vida',
-  //   color: '#a8c4a2',
-  //   accent: 'rgba(168, 196, 162, 0.15)',
-  //   size: 'normal',
-  //   image: floridos5,
-  // },
 ];
 
 const OccasionsSection = () => {
@@ -93,12 +88,11 @@ const OccasionsSection = () => {
             Encuentra el arreglo perfecto diseñado especialmente
             para la celebración que tienes en mente.
           </p>
-          <Link to='/occasions' className='occasions-cta'>
+          <Link to='/catalogo' className='occasions-cta'>
             Ver todas las ocasiones <span>↗</span>
           </Link>
         </div>
 
-        {/* ── DECORATIVE CIRCLES ── */}
         <div className='occasions-deco'>
           <div className='deco-ring deco-ring--1' />
           <div className='deco-ring deco-ring--2' />
@@ -114,7 +108,7 @@ const OccasionsSection = () => {
           const isDimmed  = hovered !== null && !isHovered;
           return (
             <Link
-              to={`/occasions/${occ.id}`}
+              to={occ.href}                          // ← URL de catálogo con filtro
               key={occ.id}
               className={`occ-card occ-card--${occ.size} ${isHovered ? 'hovered' : ''} ${isDimmed ? 'dimmed' : ''}`}
               onMouseEnter={() => setHovered(occ.id)}
@@ -123,7 +117,6 @@ const OccasionsSection = () => {
             >
               <div className='occ-card__bg' />
 
-              {/* Imagen PNG con fondo transparente — se muestra cuando hay imagen */}
               {occ.image && (
                 <img src={occ.image} alt={occ.name} className='occ-card__floral-img' />
               )}
