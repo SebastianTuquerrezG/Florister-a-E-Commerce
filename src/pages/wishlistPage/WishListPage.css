@@ -360,7 +360,7 @@
 
 .wl-cta-btn:hover { background: #e8dca0; transform: translateY(-1px); }
 
-/* ── RESPONSIVE ── */
+/* ── RESPONSIVE ── si*/
 @media (max-width: 768px) {
   .wl-page-header { padding: 32px 0 28px; }
   .wl-toolbar { flex-direction: column; align-items: stretch; }
